@@ -47,7 +47,6 @@ public class Player : MonoBehaviour
         // stop using wall jump physics if trying to go same direction as wall jumping
         if (inputDirection.x != 0 && Mathf.Sign(wallJumpDirection) == Mathf.Sign(inputDirection.x))
             wallJumpDirection = 0;
-        onGround = isOnGround();
         // horizontal movement
         float targetVelocityX = Time.fixedDeltaTime * moveSpeed * inputDirection.x;
         // cap vertical speed to terminal velocity
@@ -166,6 +165,7 @@ public class Player : MonoBehaviour
         distToSide = collider.bounds.extents.x;
         distToGround = collider.bounds.extents.y;
         timeSinceWallJump = float.PositiveInfinity;
+        onGround = false;
     }
 
     // Update is called once per frame
@@ -181,6 +181,9 @@ public class Player : MonoBehaviour
     }
 
     private void FixedUpdate() {
+        onGround = isOnGround();
+        if (onGround)
+            Debug.Log(onGround);
         HandleMovement();
         HandleJump();
         HandleWallJump();
