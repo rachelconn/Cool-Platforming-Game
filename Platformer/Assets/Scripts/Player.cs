@@ -78,7 +78,6 @@ public class Player : MonoBehaviour
         // jumping
         if (onGround && didJump) {
             body.velocity += Vector2.up * getJumpVelocity();
-            Debug.Log(body.velocity.y);
             didJump = false;
             canDash = true;
             // stop dashing if player jumped
@@ -91,7 +90,6 @@ public class Player : MonoBehaviour
                 body.velocity += Vector2.up * Physics2D.gravity.y * fallingMultiplier * Time.fixedDeltaTime;
             // don't jump as high if not holding jump
             if (body.velocity.y > 0 && !Input.GetButton("Jump")) {
-                Debug.Log("A");
                 body.velocity += Vector2.up * Physics2D.gravity.y * noHoldMultiplier * Time.fixedDeltaTime;
             }
         }
@@ -182,8 +180,6 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate() {
         onGround = isOnGround();
-        if (onGround)
-            Debug.Log(onGround);
         HandleMovement();
         HandleJump();
         HandleWallJump();
