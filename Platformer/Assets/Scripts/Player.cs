@@ -39,11 +39,13 @@ public class Player : MonoBehaviour
     public float dashSpeed;
     public float dashTime;
     // speed to wall slide at
-    public float wallSlideMultiplier;
+    public float maxWallSlideSpeed;
+    // momentum to keep from wall jump
+    public float wallJumpMomentumMultiplier;
 
     private void HandleMovement() {
         // stop using wall jump physics if trying to go same direction as wall jumping
-        if (Mathf.Sign(wallJumpDirection) == Mathf.Sign(inputDirection.x))
+        if (inputDirection.x != 0 && Mathf.Sign(wallJumpDirection) == Mathf.Sign(inputDirection.x))
             wallJumpDirection = 0;
         onGround = isOnGround();
         // horizontal movement
@@ -55,11 +57,10 @@ public class Player : MonoBehaviour
         // lerp hspeed to wall jump direction if recently wall jumped so player can't climb infinitely
         if (wallJumpDirection != 0) {
             // weight velocity towards wall jump direction depending on time since last wall jump
-            // float tValue = (timeSinceWallJump < 0.1f) ? 1 : Mathf.Lerp(1, 0, (timeSinceWallJump - 0.1f) / 0.4f);
-            float tValue = Mathf.Max(1 - timeSinceWallJump * 1.75f, 0);
+            float tValue = 1 - timeSinceWallJump * wallJumpMomentumMultiplier;
             body.velocity = new Vector2(Mathf.Lerp(body.velocity.x, getWallJumpVelocity(), tValue), body.velocity.y);
             // if reached neutral velocity or too long has passed, restore original physics
-            if (tValue < 0 || Mathf.Sign(wallJumpDirection) != Mathf.Sign(body.velocity.x)) {
+            if (tValue < 0) {//} || Mathf.Sign(wallJumpDirection) != Mathf.Sign(body.velocity.x)) {
                 wallJumpDirection = 0;
             }
         }
@@ -114,20 +115,19 @@ public class Player : MonoBehaviour
             //collide with bottom, middle, and top
             for (int i = -1; i <= 1; i++) {
                 Vector2 pos = transform.position + (Vector3.up * distToSide * i);
-                if (Physics2D.Raycast(pos, Vector2.right * direction, distToSide + 0.1f, LayerMask.GetMask("Wall"))) {
+                if (Physics2D.Raycast(pos, Vector2.right * direction, distToSide + 0.2f, LayerMask.GetMask("Wall"))) {
                     // wall jumping
                     if (!onGround && didJump) {
                         //vertical movement
                         body.velocity = Vector2.up * getJumpVelocity();
                         wallJumpDirection = -direction;
                         //bounce from wall
-                        body.velocity += wallJumpDirection * Vector2.right * getWallJumpVelocity();
-                        Debug.Log(body.velocity.x);
+                        body.velocity += Vector2.right * getWallJumpVelocity();
                         timeSinceWallJump = 0;
                     }
                     // else slide down if holding towards wall
                     else if (!onGround && direction == inputDirection.x) {
-                        float maxFallSpeed = wallSlideMultiplier * Time.fixedDeltaTime;
+                        float maxFallSpeed = maxWallSlideSpeed * Time.fixedDeltaTime;
                         body.velocity = new Vector2(body.velocity.x, Mathf.Clamp(body.velocity.y, -maxFallSpeed, float.PositiveInfinity));
                     }
                     // once collision has been found, stop checking
