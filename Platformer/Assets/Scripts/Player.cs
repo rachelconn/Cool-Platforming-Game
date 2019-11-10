@@ -122,6 +122,8 @@ public class Player : MonoBehaviour
                         wallJumpDirection = -direction;
                         //bounce from wall
                         body.velocity += Vector2.right * getWallJumpVelocity();
+                        //stop dash after walljumping
+                        timeDashing = 0;
                         timeSinceWallJump = 0;
                     }
                     // else slide down if holding towards wall
