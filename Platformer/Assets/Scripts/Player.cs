@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     private Rigidbody2D body;
     private BoxCollider2D collider;
+    private SpriteRenderer spriteRenderer;
     private bool onGround;
     private bool didJump;
     private bool didDash;
@@ -41,6 +42,8 @@ public class Player : MonoBehaviour
     // speed to wall slide at
     public float maxWallSlideSpeed;
     // momentum to keep from wall jump
+    public Sprite player;
+    public Sprite playerNoDash;
     public float wallJumpMomentumMultiplier;
 
     private void HandleMovement() {
@@ -79,7 +82,6 @@ public class Player : MonoBehaviour
         if (onGround && didJump) {
             body.velocity += Vector2.up * getJumpVelocity();
             didJump = false;
-            canDash = true;
             // stop dashing if player jumped
             timeDashing = 0;
         }
@@ -136,6 +138,9 @@ public class Player : MonoBehaviour
     }
 
     private void HandleDash() {
+        // update if player is able to dash
+        if (onGround)
+            canDash = true;
         // don't use dash if not holding a direction
         if (inputDirection.magnitude != 0 && canDash && didDash) {
             canDash = false;
@@ -156,14 +161,21 @@ public class Player : MonoBehaviour
         didDash = false;
     }
 
+    Sprite GetSprite() {
+        // determine sprite to render
+        return (canDash) ? player : playerNoDash;
+    }
+
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         distToSide = collider.bounds.extents.x;
         distToGround = collider.bounds.extents.y;
         timeSinceWallJump = float.PositiveInfinity;
         onGround = false;
+        canDash = true;
     }
 
     // Update is called once per frame
@@ -185,5 +197,6 @@ public class Player : MonoBehaviour
         HandleWallJump();
         didJump = false;
         HandleDash();
+        spriteRenderer.sprite = GetSprite();
     }
 }
