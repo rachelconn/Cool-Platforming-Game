@@ -157,8 +157,8 @@ public class Player : MonoBehaviour
         // finish if dash is over
         if (timeDashing > dashTime) {
             timeDashing = 0;
-            // remove vertical velocity
-            body.velocity = new Vector2(body.velocity.x, Mathf.Min(body.velocity.y, 200 * Time.fixedDeltaTime));
+            // remove some vertical velocity
+            body.velocity = new Vector2(body.velocity.x, Mathf.Min(body.velocity.y, dashSpeed / 2 * Time.fixedDeltaTime));
         }
         didDash = false;
     }
