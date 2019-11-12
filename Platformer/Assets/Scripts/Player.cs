@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    // implement as singlet
+    public static Player thePlayer;
+
+
     private Rigidbody2D body;
     private BoxCollider2D collider;
     private SpriteRenderer spriteRenderer;
@@ -45,6 +50,8 @@ public class Player : MonoBehaviour
     public Sprite player;
     public Sprite playerNoDash;
     public float wallJumpMomentumMultiplier;
+
+    private static string currentLevel = "";
 
     private void HandleMovement() {
         // stop using wall jump physics if trying to go same direction as wall jumping
@@ -178,6 +185,9 @@ public class Player : MonoBehaviour
         timeSinceWallJump = float.PositiveInfinity;
         onGround = false;
         canDash = true;
+
+        currentLevel = SceneManager.GetActiveScene().name;
+        Player.thePlayer = this;
     }
 
     // Update is called once per frame
@@ -200,5 +210,31 @@ public class Player : MonoBehaviour
         didJump = false;
         HandleDash();
         spriteRenderer.sprite = GetSprite();
+    }
+
+    /// <summary>
+    /// public handle for level reloading due to die
+    /// </summary>
+    public static void ReloadLevel()
+    {
+        Debug.Log("You have died.");
+        SceneManager.LoadScene(currentLevel);
+    }
+
+    /// <summary>
+    /// object handle for dash recharge
+    /// </summary>
+    public void _rechargeDash()
+    {
+        this.canDash = true;
+    }
+
+    /// <summary>
+    /// public handle for dash recharge
+    /// </summary>
+    public static void RechargeDash()
+    {
+        Debug.Log("Your dash has been recharged.");
+        Player.thePlayer._rechargeDash();
     }
 }
