@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Spring : MonoBehaviour
 {
-    public Sprite spr_ready;
-    public Sprite spr_notReady;
+    public Sprite springSprite;
     private SpriteRenderer sr;
     // Start is called before the first frame update
     void Start()
@@ -16,7 +15,7 @@ public class Spring : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sr.sprite = ready ? spr_ready : spr_notReady;
+
     }
 
     void OnTriggerEnter2D(Collider2D other) {

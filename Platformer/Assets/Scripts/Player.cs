@@ -241,7 +241,7 @@ public class Player : MonoBehaviour
     public static void SpringJump()
     {
         //spring bounce you twice what a jump would
-        thePlayer.body.velocity += Vector2.up * 2 * getJumpVelocity();
+        thePlayer.body.velocity += Vector2.up * 2 * thePlayer.getJumpVelocity();
         thePlayer.didJump = false;
         // stop dashing if player jumped
         thePlayer.timeDashing = 0;
