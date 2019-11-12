@@ -15,6 +15,4 @@ public class Spring : MonoBehaviour
     {
         
     }
-
-    void On
 }
