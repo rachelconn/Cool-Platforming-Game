@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private InputManager inputManager;
     private Rigidbody2D body;
     private BoxCollider2D collider;
     private SpriteRenderer spriteRenderer;
@@ -178,18 +179,22 @@ public class Player : MonoBehaviour
         timeSinceWallJump = float.PositiveInfinity;
         onGround = false;
         canDash = true;
+        inputManager = GameObject.FindObjectOfType<InputManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump")) {
+        if (inputManager.GetButtonDown("Jump")) {
             didJump = true;
         }
-        if (Input.GetButtonDown("Dash")) {
+       if (inputManager.GetButtonDown("Dash")) {
             didDash = true;
         }
-        inputDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+       if (inputManager.GetButtonDown("Left") || inputManager.GetButtonDown("Right"))
+       {
+           inputDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+       }
     }
 
     private void FixedUpdate() {
