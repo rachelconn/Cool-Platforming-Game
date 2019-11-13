@@ -1,4 +1,4 @@
-﻿public enum COLORSYNC : long
+﻿public enum COLORSYNC : short
 {
     ORANGE,
     PINK

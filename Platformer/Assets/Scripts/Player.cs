@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
 
 
     private Rigidbody2D body;
-    private BoxCollider2D collider;
+    private BoxCollider2D collider;  // TODO: rename to something else pls
     private SpriteRenderer spriteRenderer;
     private bool onGround;
     private bool didJump;
