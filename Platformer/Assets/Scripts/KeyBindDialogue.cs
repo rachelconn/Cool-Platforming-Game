@@ -28,7 +28,12 @@ public class KeyBindDialogue : MonoBehaviour
             Text Name = go.transform.Find("Name").GetComponent<Text>();
             Name.text = bn;
 
-            // sets the key value
+            // Set the key value
+
+            /*
+            * To Do:
+            *      This is only being set to z, fix it
+            */
             Text keyName = go.transform.Find("Button/Key").GetComponent<Text>();
             keyName.text = inputManager.GetKeyNameFor(bn);
 
