@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
     private bool didDash;
     // player can dash again on landing
     private bool canDash;
+    public bool getCanDash() {
+        return canDash;
+    }
     // if player has not reached neu
     private bool didWallJump;
     // distance to side bounding box
@@ -238,12 +241,12 @@ public class Player : MonoBehaviour
         Player.thePlayer._rechargeDash();
     }
 
-    public static void SpringJump()
+    public void SpringJump()
     {
+        Debug.Log("boing2");
         //spring bounce you twice what a jump would
-        thePlayer.body.velocity += Vector2.up * 2 * thePlayer.getJumpVelocity();
-        thePlayer.didJump = false;
+        body.velocity += Vector2.up * 2 * getJumpVelocity();
         // stop dashing if player jumped
-        thePlayer.timeDashing = 0;
+        timeDashing = 0;
     }
 }
