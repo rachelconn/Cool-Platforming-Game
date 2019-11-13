@@ -37,7 +37,7 @@ public class DashRecovery : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
-            if (ready)
+            if (ready && !Player.thePlayer.getCanDash())
             {
                 ready = false;
                 cooldown = RechargeTime;

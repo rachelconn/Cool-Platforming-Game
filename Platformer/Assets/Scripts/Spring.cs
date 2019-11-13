@@ -18,10 +18,11 @@ public class Spring : MonoBehaviour
 
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
+    void OnCollisionEnter2D(Collision2D other) {
+        Debug.Log("boing3");
         if (other.gameObject.name == "Player")
         {
-            Player.SpringJump();
+            Player.thePlayer.SpringJump();
         }
     }
 }
