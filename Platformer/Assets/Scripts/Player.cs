@@ -241,11 +241,19 @@ public class Player : MonoBehaviour
         Player.thePlayer._rechargeDash();
     }
 
-    public void SpringJump()
+    public void SpringJump(int direction)
     {
-        Debug.Log("boing2");
-        //spring bounce you twice what a jump would
-        body.velocity += Vector2.up * 2 * getJumpVelocity();
+        switch (direction) {
+            case 0:
+                body.velocity += Vector2.left * 4 * getJumpVelocity();
+                break;
+            case 1:
+                body.velocity += Vector2.right * 4 * getJumpVelocity();
+                break;
+            case 2:
+                body.velocity += Vector2.up * 2 * getJumpVelocity();
+                break;
+        }
         // stop dashing if player jumped
         timeDashing = 0;
     }

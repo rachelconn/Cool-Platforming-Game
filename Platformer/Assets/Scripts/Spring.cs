@@ -6,7 +6,9 @@ public class Spring : MonoBehaviour
 {
     public Sprite springSprite;
     private SpriteRenderer sr;
-    // Start is called before the first frame update
+
+    //0 == up, 1 == right, 2 == down, 3 == left
+    //public int direction;
     void Start()
     {
         sr = this.GetComponent<SpriteRenderer>();
@@ -19,10 +21,11 @@ public class Spring : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D other) {
-        Debug.Log("boing3");
-        if (other.gameObject.name == "Player")
+
+        if (other.gameObject.name == "Player" && other.GetContact(0).normal[1] < 0)
         {
-            Player.thePlayer.SpringJump();
+            Player.thePlayer.SpringJump(2);
         }
     }
 }
+
