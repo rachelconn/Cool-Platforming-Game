@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
     private void HandleJump() {
         // jumping
         if (onGround && didJump) {
-            body.velocity += Vector2.up * getJumpVelocity();
+            body.velocity = new Vector2(body.velocity.x, getJumpVelocity());
             didJump = false;
             // stop dashing if player jumped
             timeDashing = 0;
@@ -245,7 +245,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("boing2");
         //spring bounce you twice what a jump would
-        body.velocity += Vector2.up * 2 * getJumpVelocity();
+        body.velocity = new Vector2(body.velocity.x, 2 * getJumpVelocity());
         // stop dashing if player jumped
         timeDashing = 0;
     }
