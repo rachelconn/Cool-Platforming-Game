@@ -1,6 +1,8 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LevelCompleteControls : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class LevelCompleteControls : MonoBehaviour
     private bool LeftPressed;
     private bool RightPressed;
     private string[] buttonNames = {"Retry Button", "Continue Button", "Exit Button"};
+    public TimeSpan timeToComplete;
     public Transform selection;
     // don't interpret axis movement as button press unless it goes under the threshold before pressing again
     public float inputThreshold;
@@ -20,7 +23,15 @@ public class LevelCompleteControls : MonoBehaviour
 
     void Start()
     {
+        LeftPressed = true;
+        RightPressed = true;
         selectionNum = 1;
+        // set completion time text to the proper value
+        TextMeshProUGUI text = transform.Find("Completion Time Text").gameObject.GetComponent<TextMeshProUGUI>();
+        text.SetText(String.Format("Time to complete:\n{0}:{1:00}.{2}",
+                     Math.Floor(timeToComplete.TotalMinutes),
+                     timeToComplete.Seconds,
+                     timeToComplete.Milliseconds));
     }
 
     void Update()
@@ -43,7 +54,6 @@ public class LevelCompleteControls : MonoBehaviour
         }
 
         // update position of selection
-        Debug.Log(selectionNum);
         selection.position = transform.Find(buttonNames[selectionNum]).position;
     }
 }

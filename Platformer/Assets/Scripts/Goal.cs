@@ -8,12 +8,15 @@ public class Goal : MonoBehaviour
 {
     private Stopwatch stopwatch;
     private bool levelCompleted;
+    public GameObject levelCompletePrefab;
 
     private void FinishLevel() {
         stopwatch.Stop();
         TimeSpan ts = stopwatch.Elapsed;
-        UnityEngine.Debug.Log(String.Format("{0}:{1:00}.{2}", Math.Floor(ts.TotalMinutes), ts.Seconds, ts.Milliseconds));
         Time.timeScale = 0;
+        // create level complete screen and give it the correct complete time text
+        GameObject levelCompleteScreen = Instantiate(levelCompletePrefab, Vector3.zero, Quaternion.identity);
+        levelCompleteScreen.GetComponent<LevelCompleteControls>().timeToComplete = ts;
     }
 
     void Start()
@@ -29,10 +32,9 @@ public class Goal : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        UnityEngine.Debug.Log("a");
         if (!levelCompleted) {
-            levelCompleted = true;
             FinishLevel();
+            levelCompleted = true;
         }
     }
 }
