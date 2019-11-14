@@ -12,6 +12,7 @@ public class CameraControls : MonoBehaviour
     void Start()
     {
         eye = new Vector3(0, 0, -distanceFromPlayer);
+        transform.position = player.position;
     }
 
     // Update is called once per frame
