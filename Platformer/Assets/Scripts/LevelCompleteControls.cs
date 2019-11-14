@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class LevelCompleteControls : MonoBehaviour
@@ -10,6 +11,7 @@ public class LevelCompleteControls : MonoBehaviour
     private bool LeftPressed;
     private bool RightPressed;
     private string[] buttonNames = {"Retry Button", "Continue Button", "Exit Button"};
+    public string nextLevelScene;
     public TimeSpan timeToComplete;
     public Transform selection;
     // don't interpret axis movement as button press unless it goes under the threshold before pressing again
@@ -19,6 +21,19 @@ public class LevelCompleteControls : MonoBehaviour
         int newSelection = selectionNum + amount;
         if (newSelection >= 0 && newSelection < buttonNames.Length)
             selectionNum = newSelection;
+    }
+
+    void Retry() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+    }
+
+    void Continue() {
+        SceneManager.LoadScene(nextLevelScene, LoadSceneMode.Single);
+    }
+
+    void Exit() {
+        UnityEditor.EditorApplication.isPlaying = false;
+        Application.Quit();
     }
 
     void Start()
@@ -55,5 +70,16 @@ public class LevelCompleteControls : MonoBehaviour
 
         // update position of selection
         selection.position = transform.Find(buttonNames[selectionNum]).position;
+
+        // if player presses jump, confirm selection
+        if (Input.GetButtonDown("Jump")) {
+            // unfreeze time
+            Time.timeScale = 1;
+            switch (selectionNum) {
+                case 0: Retry(); break;
+                case 1: Continue(); break;
+                case 2: Exit(); break;
+            }
+        }
     }
 }

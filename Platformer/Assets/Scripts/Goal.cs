@@ -9,6 +9,7 @@ public class Goal : MonoBehaviour
     private Stopwatch stopwatch;
     private bool levelCompleted;
     public GameObject levelCompletePrefab;
+    public string nextLevelScene;
 
     private void FinishLevel() {
         stopwatch.Stop();
@@ -17,6 +18,7 @@ public class Goal : MonoBehaviour
         // create level complete screen and give it the correct complete time text
         GameObject levelCompleteScreen = Instantiate(levelCompletePrefab, Vector3.zero, Quaternion.identity);
         levelCompleteScreen.GetComponent<LevelCompleteControls>().timeToComplete = ts;
+        levelCompleteScreen.GetComponent<LevelCompleteControls>().nextLevelScene = nextLevelScene;
     }
 
     void Start()
@@ -24,11 +26,6 @@ public class Goal : MonoBehaviour
         levelCompleted = false;
         stopwatch = new Stopwatch();
         stopwatch.Start();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     void OnTriggerEnter2D(Collider2D other) {
