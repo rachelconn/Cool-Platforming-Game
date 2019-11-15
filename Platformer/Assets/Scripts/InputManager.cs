@@ -6,6 +6,12 @@ using System.Linq;
 public class InputManager : MonoBehaviour
 {
     private Dictionary<string, KeyCode> keys;
+    
+    // Keep the object between scene changes
+    void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     // Use this for initialization
     void OnEnable()
