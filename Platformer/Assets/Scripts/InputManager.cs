@@ -45,4 +45,10 @@ public class InputManager : MonoBehaviour
         }
         return keys[name].ToString();
     }
+
+    // Set the value buttonName in keys to the new KeyCode
+    public void SetButtonForKey(string buttonName, KeyCode keyCode)
+    {
+        keys[buttonName] = keyCode;
+    }
 }

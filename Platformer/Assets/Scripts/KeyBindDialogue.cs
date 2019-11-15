@@ -2,23 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class KeyBindDialogue : MonoBehaviour
 {
     InputManager inputManager;
     public GameObject keyItemPrefab;
     public GameObject keyList;
+    string buttonToRebind = null;
+    Dictionary<string, Text> buttonToLabel;
 
     // Start is called before the first frame update
     void Start()
     {
         inputManager = GameObject.FindObjectOfType<InputManager>();
         string[] names = inputManager.GetButtonNames();
+        buttonToLabel = new Dictionary<string, Text>();
 
         // Loop through the dictionary in inputManager to 
         // create a key item for each button in inputManager
         foreach (string bn in names)
         {
+
             GameObject go = (GameObject) Instantiate(keyItemPrefab);
             Instantiate(keyItemPrefab);
             go.transform.SetParent(keyList.transform);
@@ -29,29 +34,45 @@ public class KeyBindDialogue : MonoBehaviour
             Name.text = bn;
 
             // Set the key value
-
-            /*
-            * To Do:
-            *      This is only being set to z, fix it
-            */
             Text keyName = go.transform.Find("Button/Key").GetComponent<Text>();
             keyName.text = inputManager.GetKeyNameFor(bn);
+            buttonToLabel[bn] = keyName;
 
             // Adds an action listener to the button
             Button bindButton = go.transform.Find("Button").GetComponent<Button>();
-
-            /*
-             * To Do:
-             *      The action listener doesn't work, find out why
-            */
-            //bindButton.onClick.AddListener( () => { RebindFor(bn); } );
+            bindButton.onClick.AddListener( () => { RebindFor(bn); } );
         }
         
 
     }
 
+    void Update()
+    {
+        if (buttonToRebind != null)
+        {
+            // Find which key is pressed
+            if (Input.anyKeyDown)
+            {
+                Array kcs = Enum.GetValues(typeof(KeyCode));
+
+                // Loop through the KeyCodes to see which button is pressed
+                foreach (KeyCode kc in kcs)
+                {
+                    // If found rebind the key, then break from the loop
+                    if (Input.GetKeyDown(kc))
+                    {
+                        inputManager.SetButtonForKey(buttonToRebind, kc);
+                        buttonToLabel[buttonToRebind].text = kc.ToString();
+                        buttonToRebind = null;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
     void RebindFor(string name)
     {
-        Debug.LogError("test");
+        buttonToRebind = name;
     }
 }
