@@ -18,7 +18,7 @@ public class Button : MonoBehaviour
 
     void Start()
     {
-        sr = this.GetComponent<SpriteRenderer>();
+        sr = gameObject.GetComponentInParent<SpriteRenderer>();
         buttons.Add(myColor, this);
     }
 
