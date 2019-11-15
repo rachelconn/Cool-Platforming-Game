@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
 
 
     private Rigidbody2D body;
-    private BoxCollider2D collider;
+    private BoxCollider2D collider;  // TODO: rename to something else pls
     private SpriteRenderer spriteRenderer;
     private bool onGround;
     private bool didJump;
@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
     private void HandleJump() {
         // jumping
         if (onGround && didJump) {
-            body.velocity += Vector2.up * getJumpVelocity();
+            body.velocity = new Vector2(body.velocity.x, getJumpVelocity());
             didJump = false;
             // stop dashing if player jumped
             timeDashing = 0;
@@ -254,6 +254,7 @@ public class Player : MonoBehaviour
                 body.velocity += Vector2.up * 2 * getJumpVelocity();
                 break;
         }
+
         // stop dashing if player jumped
         timeDashing = 0;
     }
