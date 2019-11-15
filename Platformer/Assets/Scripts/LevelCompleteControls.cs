@@ -32,7 +32,6 @@ public class LevelCompleteControls : MonoBehaviour
     }
 
     void Exit() {
-        UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
 
