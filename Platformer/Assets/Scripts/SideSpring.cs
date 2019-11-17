@@ -15,6 +15,10 @@ public class SideSpring : MonoBehaviour {
         if (direction == 1) {
             sr.flipX = true;
         }
+
+        else {
+            sr.flipX = false;
+        }
     }
 
     // Update is called once per frame
