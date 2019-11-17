@@ -1,17 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    // implement as singlet
+    public static Player thePlayer;
+
+
     private Rigidbody2D body;
-    private BoxCollider2D collider;
+    private BoxCollider2D collider;  // TODO: rename to something else pls
     private SpriteRenderer spriteRenderer;
     private bool onGround;
     private bool didJump;
     private bool didDash;
     // player can dash again on landing
     private bool canDash;
+    public bool getCanDash() {
+        return canDash;
+    }
     // if player has not reached neu
     private bool didWallJump;
     // distance to side bounding box
@@ -45,6 +53,8 @@ public class Player : MonoBehaviour
     public Sprite player;
     public Sprite playerNoDash;
     public float wallJumpMomentumMultiplier;
+
+    private static string currentLevel = "";
 
     private void HandleMovement() {
         // stop using wall jump physics if trying to go same direction as wall jumping
@@ -80,7 +90,7 @@ public class Player : MonoBehaviour
     private void HandleJump() {
         // jumping
         if (onGround && didJump) {
-            body.velocity += Vector2.up * getJumpVelocity();
+            body.velocity = new Vector2(body.velocity.x, getJumpVelocity());
             didJump = false;
             // stop dashing if player jumped
             timeDashing = 0;
@@ -178,11 +188,18 @@ public class Player : MonoBehaviour
         timeSinceWallJump = float.PositiveInfinity;
         onGround = false;
         canDash = true;
+
+        currentLevel = SceneManager.GetActiveScene().name;
+        Player.thePlayer = this;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gameObject.transform.position.y < -10.0f)
+        {
+            ReloadLevel();
+        }
         if (Input.GetButtonDown("Jump")) {
             didJump = true;
         }
@@ -200,5 +217,40 @@ public class Player : MonoBehaviour
         didJump = false;
         HandleDash();
         spriteRenderer.sprite = GetSprite();
+    }
+
+    /// <summary>
+    /// public handle for level reloading due to die
+    /// </summary>
+    public static void ReloadLevel()
+    {
+        Debug.Log("You have died.");
+        SceneManager.LoadScene(currentLevel);
+    }
+
+    /// <summary>
+    /// object handle for dash recharge
+    /// </summary>
+    public void _rechargeDash()
+    {
+        this.canDash = true;
+    }
+
+    /// <summary>
+    /// public handle for dash recharge
+    /// </summary>
+    public static void RechargeDash()
+    {
+        Debug.Log("Your dash has been recharged.");
+        Player.thePlayer._rechargeDash();
+    }
+
+    public void SpringJump()
+    {
+        Debug.Log("boing2");
+        //spring bounce you twice what a jump would
+        body.velocity = new Vector2(body.velocity.x, 2 * getJumpVelocity());
+        // stop dashing if player jumped
+        timeDashing = 0;
     }
 }
