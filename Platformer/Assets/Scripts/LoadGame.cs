@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class LoadGame : MonoBehaviour
 {
-    private Save = new Save();
+    //private Save = new Save();
 }
