@@ -116,6 +116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b9b3cd5cc7e95d4f9317c8b1e685fc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 0}
+  didJump: 0
   terminalVelocity: -1000
   moveSpeed: 500
   jumpMultiplier: 700
