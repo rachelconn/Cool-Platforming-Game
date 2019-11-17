@@ -232,7 +232,14 @@ public class Player : MonoBehaviour
     public static void ReloadLevel()
     {
         Debug.Log("You have died.");
-        SceneManager.LoadScene(currentLevel);
+        // if player has died 10 times, give them the option to skip level
+        if (++LevelSkip.numDeaths >= 10) {
+            Time.timeScale = 0;
+            LevelSkip.numDeaths = 0;
+            GameObject levelSkipScreen = (GameObject) Instantiate(Resources.Load("LevelSkipUI"));
+        }
+        else
+            SceneManager.LoadScene(currentLevel);
     }
 
     /// <summary>

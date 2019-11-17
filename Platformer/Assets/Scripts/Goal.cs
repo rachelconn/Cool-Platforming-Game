@@ -14,7 +14,9 @@ public class Goal : MonoBehaviour
     private void FinishLevel() {
         stopwatch.Stop();
         TimeSpan ts = stopwatch.Elapsed;
+        // stop time and reset death counter
         Time.timeScale = 0;
+        LevelSkip.numDeaths = 0;
         // create level complete screen and give it the correct complete time text
         GameObject levelCompleteScreen = Instantiate(levelCompletePrefab, Vector3.zero, Quaternion.identity);
         levelCompleteScreen.GetComponent<LevelCompleteControls>().timeToComplete = ts;
