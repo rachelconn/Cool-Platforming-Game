@@ -20,6 +20,8 @@ public class Tutorial : MonoBehaviour
         transform.position = player.position + Vector3.up * 2;
         if (player.position.x < 10)
             text.SetText("Press left and right to move.");
+        else if (player.position.x < 22)
+            text.SetText("Press Z to jump.");
         else if (player.position.x < 30)
             text.SetText("Press X and any direction to dash in that direction.");
         else
