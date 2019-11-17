@@ -34,6 +34,17 @@ public class InputManager : MonoBehaviour
         }
         return Input.GetKeyDown(keys[name]);
     }
+    
+    // Check to see if the button pressed is released.
+    public bool GetButtonUp(string name)
+    {
+        if (!keys.ContainsKey(name))
+        {
+            Debug.LogError("InputManager::GetButtonUp::No button named " + name);
+            return false;
+        }
+        return Input.GetKeyUp(keys[name]);
+    }
 
     // Return an array of the names of the buttons
     public string[] GetButtonNames()
