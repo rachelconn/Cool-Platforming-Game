@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     public static Player thePlayer;
 
 
-    public Rigidbody2D body;
     private BoxCollider2D collider;
     private SpriteRenderer spriteRenderer;
     private bool onGround;

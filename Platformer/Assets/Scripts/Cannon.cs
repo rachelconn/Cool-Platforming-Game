@@ -69,7 +69,7 @@ public class Cannon : MonoBehaviour {
             time = 0;
         }
         
-        Rigidbody2D theBody = Player.thePlayer.body;
+        Rigidbody2D theBody = Player.thePlayer.GetComponent<Rigidbody2D>();
 
 
         
@@ -119,7 +119,7 @@ public class Cannon : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        Rigidbody2D theBody = Player.thePlayer.body;
+        Rigidbody2D theBody = Player.thePlayer.GetComponent<Rigidbody2D>();
 
         if (other.gameObject.name == "Player" && cannonCoolDown <= 0) {
             theBody.position = transform.position;

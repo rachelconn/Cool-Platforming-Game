@@ -39,7 +39,7 @@ public class KeyBindDialogue : MonoBehaviour
             buttonToLabel[bn] = keyName;
 
             // Adds an action listener to the button
-            Button bindButton = go.transform.Find("Button").GetComponent<Button>();
+            UnityEngine.UI.Button bindButton = go.transform.Find("Button").GetComponent<UnityEngine.UI.Button>();
             bindButton.onClick.AddListener( () => { RebindFor(bn); } );
         }
         
