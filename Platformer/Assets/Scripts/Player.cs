@@ -67,7 +67,6 @@ public class Player : MonoBehaviour
                 wallJumpDirection = 0;
             }
         }
-
     }
 
     private float getJumpVelocity() {
