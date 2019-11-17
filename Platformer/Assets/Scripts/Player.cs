@@ -9,11 +9,11 @@ public class Player : MonoBehaviour
     public static Player thePlayer;
 
 
-    private Rigidbody2D body;
-    private BoxCollider2D collider;  // TODO: rename to something else pls
+    public Rigidbody2D body;
+    private BoxCollider2D collider;
     private SpriteRenderer spriteRenderer;
     private bool onGround;
-    private bool didJump;
+    public bool didJump;
     private bool didDash;
     // player can dash again on landing
     private bool canDash;
@@ -63,9 +63,15 @@ public class Player : MonoBehaviour
         // horizontal movement
         float targetVelocityX = Time.fixedDeltaTime * moveSpeed * inputDirection.x;
         // cap vertical speed to terminal velocity
+        
         float newVelocityY = Mathf.Max(body.velocity.y, Time.fixedDeltaTime * terminalVelocity);
         // smooth movement
-        body.velocity = new Vector2(Mathf.Lerp(body.velocity.x, targetVelocityX, 0.3f), newVelocityY);
+        if (System.Math.Abs(body.velocity.x) < Time.fixedDeltaTime * dashSpeed)
+            body.velocity = new Vector2(Mathf.Lerp(body.velocity.x, targetVelocityX, 0.3f), newVelocityY);
+        
+        else {
+            body.velocity -= new Vector2(body.velocity.x * 0.05f, body.velocity.y * 0.05f);
+        }
         // lerp hspeed to wall jump direction if recently wall jumped so player can't climb infinitely
         if (wallJumpDirection != 0) {
             // weight velocity towards wall jump direction depending on time since last wall jump
@@ -79,7 +85,7 @@ public class Player : MonoBehaviour
 
     }
 
-    private float getJumpVelocity() {
+    public float getJumpVelocity() {
         return jumpMultiplier * Time.fixedDeltaTime;
     }
     // TODO: use deltatime in wall jump
@@ -90,8 +96,9 @@ public class Player : MonoBehaviour
     private void HandleJump() {
         // jumping
         if (onGround && didJump) {
-            body.velocity = new Vector2(body.velocity.x, getJumpVelocity());
             didJump = false;
+            body.velocity = new Vector2(body.velocity.x, getJumpVelocity());
+            
             // stop dashing if player jumped
             timeDashing = 0;
         }
