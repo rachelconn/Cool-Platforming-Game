@@ -191,9 +191,21 @@ public class Player : MonoBehaviour
        if (inputManager.GetButtonDown("Dash")) {
             didDash = true;
         }
-       if (inputManager.GetButtonDown("Left") || inputManager.GetButtonDown("Right"))
+       if (inputManager.GetButtonDown("Left"))
        {
-           inputDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+           inputDirection = new Vector2(-1, Input.GetAxisRaw("Vertical"));
+       }
+       else if (inputManager.GetButtonUp("Left") || inputManager.GetButtonUp("Right"))
+       {
+           inputDirection = new Vector2(0, Input.GetAxisRaw("Vertical"));
+       }
+       if (inputManager.GetButtonDown("Right"))
+       {
+           inputDirection = new Vector2(1, Input.GetAxisRaw("Vertical"));
+       }
+       else if (inputManager.GetButtonUp("Right"))
+       {
+           inputDirection = new Vector2(0, Input.GetAxisRaw("Vertical"));
        }
     }
 
