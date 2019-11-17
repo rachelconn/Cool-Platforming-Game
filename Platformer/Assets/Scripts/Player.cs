@@ -252,10 +252,10 @@ public class Player : MonoBehaviour
     {
         switch (direction) {
             case 0:
-                body.velocity += Vector2.left * 4 * getJumpVelocity();
+                body.velocity += Vector2.left * 2 * getJumpVelocity();
                 break;
             case 1:
-                body.velocity += Vector2.right * 4 * getJumpVelocity();
+                body.velocity += Vector2.right * 2 * getJumpVelocity();
                 break;
             case 2:
                 body.velocity += Vector2.up * 2 * getJumpVelocity();
