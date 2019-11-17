@@ -39,6 +39,10 @@ public class LoadGame : MonoBehaviour
 
     public void AutosaveGame()
     {
+
+        int tempNum = int.Parse(levelNum);
+        levelNum = (tempNum + 1).ToString();
+
         Save save = CreateSaveGameObject();
 
         save.saveFile = "autosave";
