@@ -20,7 +20,6 @@ public class ContextualReminder : MonoBehaviour
 
     public void SetMessage(string message)
     {
-        Debug.Log(string.Format("Message set to: {0}", message));
         _textBox.text = message;
     }
 
