@@ -118,7 +118,7 @@ public class Player : MonoBehaviour
             if (body.velocity.y < 0)
                 body.velocity += Vector2.up * Physics2D.gravity.y * fallingMultiplier * Time.fixedDeltaTime;
             // don't jump as high if not holding jump
-            if (body.velocity.y > 0 && !Input.GetButton("Jump"))
+            if (body.velocity.y > 0 && !InputManager.GetButton("Jump"))
             {
                 body.velocity += Vector2.up * Physics2D.gravity.y * noHoldMultiplier * Time.fixedDeltaTime;
             }
@@ -231,15 +231,15 @@ public class Player : MonoBehaviour
         {
             ReloadLevel();
         }
-        if (Input.GetButtonDown("Jump"))
+        if (InputManager.GetButtonDown("Jump"))
         {
             didJump = true;
         }
-        if (Input.GetButtonDown("Dash"))
+        if (InputManager.GetButtonDown("Dash"))
         {
             didDash = true;
         }
-        inputDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        inputDirection = new Vector2(InputManager.GetAxisRaw("Horizontal"), InputManager.GetAxisRaw("Vertical"));
     }
 
     private void FixedUpdate()

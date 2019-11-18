@@ -6,7 +6,6 @@ using System;
 
 public class KeyBindDialogue : MonoBehaviour
 {
-    InputManager inputManager;
     public GameObject keyItemPrefab;
     public GameObject keyList;
     string buttonToRebind = null;
@@ -15,8 +14,7 @@ public class KeyBindDialogue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inputManager = GameObject.FindObjectOfType<InputManager>();
-        string[] names = inputManager.GetButtonNames();
+        string[] names = InputManager.GetButtonNames();
         buttonToLabel = new Dictionary<string, Text>();
 
         // Loop through the dictionary in inputManager to 
@@ -35,7 +33,7 @@ public class KeyBindDialogue : MonoBehaviour
 
             // Set the key value
             Text keyName = go.transform.Find("Button/Key").GetComponent<Text>();
-            keyName.text = inputManager.GetKeyNameFor(bn);
+            keyName.text = InputManager.GetKeyNameFor(bn);
             buttonToLabel[bn] = keyName;
 
             // Adds an action listener to the button
@@ -61,7 +59,7 @@ public class KeyBindDialogue : MonoBehaviour
                     // If found rebind the key, then break from the loop
                     if (Input.GetKeyDown(kc))
                     {
-                        inputManager.SetButtonForKey(buttonToRebind, kc);
+                        InputManager.SetButtonForKey(buttonToRebind, kc);
                         buttonToLabel[buttonToRebind].text = kc.ToString();
                         buttonToRebind = null;
                         break;

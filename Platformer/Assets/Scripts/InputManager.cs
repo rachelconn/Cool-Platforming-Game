@@ -3,29 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class InputManager : MonoBehaviour
+public static class InputManager
 {
-    private Dictionary<string, KeyCode> keys;
-
-    // Keep the object between scene changes
-    void Awake()
+    private static Dictionary<string, KeyCode> keys = new Dictionary<string, KeyCode>()
     {
-        DontDestroyOnLoad(this.gameObject);
-    }
-
-    // Use this for initialization
-    void OnEnable()
-    {
-        keys = new Dictionary<string, KeyCode>();
-
-        keys["Jump"] = KeyCode.Z;
-        keys["Left"] = KeyCode.LeftArrow;
-        keys["Right"] = KeyCode.RightArrow;
-        keys["Dash"] = KeyCode.X;
-    }
+        {"Jump", KeyCode.Z },
+        {"Left", KeyCode.LeftArrow },
+        {"Right", KeyCode.RightArrow },
+        {"Dash", KeyCode.X },
+        {"Up", KeyCode.UpArrow },
+        {"Down", KeyCode.DownArrow },
+        {"Select", KeyCode.Return },
+    };
 
     // Check to see if the button entered is being pressed.
-    public bool GetButtonDown(string name)
+    public static bool GetButtonDown(string name)
     {
         if (!keys.ContainsKey(name))
         {
@@ -34,9 +26,35 @@ public class InputManager : MonoBehaviour
         }
         return Input.GetKeyDown(keys[name]);
     }
-    
+
+    public static bool GetButton(string name)
+    {
+        if (!keys.ContainsKey(name))
+        {
+            Debug.LogError("InputManager::GetButtonDown::No button named " + name);
+            return false;
+        }
+        return Input.GetKey(keys[name]);
+    }
+
+    public static float GetAxisRaw(string axis)
+    {
+        if (axis == "Horizontal")
+        {
+            return (GetButton("Right") ? 1.0f : 0.0f) - (GetButton("Left") ? 1.0f : 0.0f);
+        }
+        else if (axis == "Vertical")
+        {
+            return (GetButton("Up") ? 1.0f : 0.0f) - (GetButton("Down") ? 1.0f : 0.0f);
+        }
+        else
+        {
+            throw new System.Exception(string.Format("Axis not supported: {0}", axis));
+        }
+    }
+
     // Check to see if the button pressed is released.
-    public bool GetButtonUp(string name)
+    public static bool GetButtonUp(string name)
     {
         if (!keys.ContainsKey(name))
         {
@@ -47,13 +65,13 @@ public class InputManager : MonoBehaviour
     }
 
     // Return an array of the names of the buttons
-    public string[] GetButtonNames()
+    public static string[] GetButtonNames()
     {
         return keys.Keys.ToArray();
     }
 
     // Takes a button name and returns the value of its corresponding KeyCode in keys
-    public string GetKeyNameFor(string name)
+    public static string GetKeyNameFor(string name)
     {
         if (!keys.ContainsKey(name))
         {
@@ -64,7 +82,7 @@ public class InputManager : MonoBehaviour
     }
 
     // Set the value buttonName in keys to the new KeyCode
-    public void SetButtonForKey(string buttonName, KeyCode keyCode)
+    public static void SetButtonForKey(string buttonName, KeyCode keyCode)
     {
         keys[buttonName] = keyCode;
     }
