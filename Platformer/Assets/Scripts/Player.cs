@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     // implement as singlet
     public static Player thePlayer;
 
+    public GameObject settingsUI;
+
 
     public Rigidbody2D body;
-    private BoxCollider2D collider;
+    private BoxCollider2D myCollider;
     private SpriteRenderer spriteRenderer;
     private bool onGround;
     public bool didJump;
@@ -212,10 +215,10 @@ public class Player : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        collider = GetComponent<BoxCollider2D>();
+        myCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        distToSide = collider.bounds.extents.x;
-        distToGround = collider.bounds.extents.y;
+        distToSide = myCollider.bounds.extents.x;
+        distToGround = myCollider.bounds.extents.y;
         timeSinceWallJump = float.PositiveInfinity;
         onGround = false;
         canDash = true;
@@ -239,6 +242,18 @@ public class Player : MonoBehaviour
         {
             didDash = true;
         }
+        if (InputManager.GetButtonDown("Settings"))
+        {
+            if (!settingsUI.activeInHierarchy)
+            {
+                Instantiate(settingsUI);
+                _Pause();
+            }
+            else
+            {
+                // user may be rebinding keys so don't do anything
+            }
+        }
         inputDirection = new Vector2(InputManager.GetAxisRaw("Horizontal"), InputManager.GetAxisRaw("Vertical"));
     }
 
@@ -251,6 +266,26 @@ public class Player : MonoBehaviour
         didJump = false;
         HandleDash();
         spriteRenderer.sprite = GetSprite();
+    }
+
+    public void _Pause()
+    {
+        Time.timeScale = 0f;
+    }
+
+    public void _Unpause()
+    {
+        Time.timeScale = 1f;
+    }
+
+    public static void Pause()
+    {
+        Player.thePlayer._Pause();
+    }
+
+    public static void Unpause()
+    {
+        Player.thePlayer._Unpause();
     }
 
     /// <summary>

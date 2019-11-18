@@ -7,7 +7,6 @@ using System;
 public class KeyBindDialogue : MonoBehaviour
 {
     public GameObject keyItemPrefab;
-    public GameObject keyList;
     string buttonToRebind = null;
     Dictionary<string, Text> buttonToLabel;
 
@@ -22,9 +21,7 @@ public class KeyBindDialogue : MonoBehaviour
         foreach (string bn in names)
         {
 
-            GameObject go = (GameObject) Instantiate(keyItemPrefab);
-            Instantiate(keyItemPrefab);
-            go.transform.SetParent(keyList.transform);
+            GameObject go = (GameObject) Instantiate(keyItemPrefab, gameObject.transform);
             go.transform.localScale = Vector3.one;
 
             // Set the button name
@@ -33,7 +30,7 @@ public class KeyBindDialogue : MonoBehaviour
 
             // Set the key value
             Text keyName = go.transform.Find("Button/Key").GetComponent<Text>();
-            keyName.text = InputManager.GetKeyNameFor(bn);
+            keyName.text = ProcessName(InputManager.GetKeyNameFor(bn));
             buttonToLabel[bn] = keyName;
 
             // Adds an action listener to the button
@@ -72,5 +69,18 @@ public class KeyBindDialogue : MonoBehaviour
     void RebindFor(string name)
     {
         buttonToRebind = name;
+    }
+
+    public static string ProcessName(string name)
+    {
+        return name.Replace("Arrow", " Arrow");
+    }
+
+    /// <summary>
+    /// call a static function in player to restart time system
+    /// </summary>
+    public void Unpause()
+    {
+        Player.Unpause();
     }
 }

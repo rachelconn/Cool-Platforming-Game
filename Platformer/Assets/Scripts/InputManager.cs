@@ -14,6 +14,7 @@ public static class InputManager
         {"Up", KeyCode.UpArrow },
         {"Down", KeyCode.DownArrow },
         {"Select", KeyCode.Return },
+        {"Settings", KeyCode.P },
     };
 
     // Check to see if the button entered is being pressed.
