@@ -14,6 +14,9 @@ public class Cannon : MonoBehaviour {
 
     private bool launch = false;
 
+    //constant to change speed that the barrel spins (1 = 8 second full spin; 8 = 1 second full spin)
+    public const int barrelSpeed = 8; 
+
     void Start()
     {
         sr = this.GetComponent<SpriteRenderer>();
@@ -62,7 +65,7 @@ public class Cannon : MonoBehaviour {
                 break;
         }
 
-        time += Time.deltaTime;
+        time += barrelSpeed * Time.deltaTime;
         if (cannonCoolDown >= 0)
             cannonCoolDown -= Time.deltaTime;
         if (System.Math.Floor(time) > 7) {
