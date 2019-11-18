@@ -62,7 +62,7 @@ public class Cannon : MonoBehaviour {
                 break;
         }
 
-        time += 1.5 * Time.deltaTime;
+        time += 8 * Time.deltaTime;
         if (cannonCoolDown >= 0)
             cannonCoolDown -= Time.deltaTime;
         if (System.Math.Floor(time) > 7) {
@@ -85,13 +85,13 @@ public class Cannon : MonoBehaviour {
                 cannonCoolDown = 0.2;
                 switch (System.Math.Floor(time)) {
                     case 0:
-                        theBody.velocity += (new Vector2(0, 1)) * 2.5f * Player.thePlayer.getJumpVelocity();
+                        theBody.velocity += (new Vector2(0, 1)) * 2.25f * Player.thePlayer.getJumpVelocity();
                         break;
                     case 1:
                         theBody.velocity += (new Vector2(1, 1)) * 2.5f * Player.thePlayer.getJumpVelocity();
                         break;
                     case 2:
-                        theBody.velocity += (new Vector2(1, 0)) * 1.5f * Player.thePlayer.getJumpVelocity();
+                        theBody.velocity += (new Vector2(1, 0)) * 2.5f * Player.thePlayer.getJumpVelocity();
                         break;
                     case 3:
                         theBody.velocity += (new Vector2(1, -1)) * 2.5f * Player.thePlayer.getJumpVelocity();
