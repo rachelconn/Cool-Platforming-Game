@@ -7,8 +7,7 @@ public class Player : MonoBehaviour
 {
     // implement as singlet
     public static Player thePlayer;
-
-
+    private InputManager inputManager;
     private Rigidbody2D body;
     private BoxCollider2D collider;  // TODO: rename to something else pls
     private SpriteRenderer spriteRenderer;
@@ -180,6 +179,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        inputManager = GameObject.FindObjectOfType<InputManager>();
         body = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -196,13 +196,25 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump")) {
+        if (inputManager.GetButtonDown("Jump")) {
             didJump = true;
         }
-        if (Input.GetButtonDown("Dash")) {
+        if (inputManager.GetButtonDown("Dash")) {
             didDash = true;
         }
-        inputDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        if (inputManager.GetButtonDown("Left"))
+        {
+            inputDirection = new Vector2(-1, Input.GetAxisRaw("Vertical"));
+        }
+        else if (inputManager.GetButtonDown("Right"))
+        {
+            inputDirection = new Vector2(1, Input.GetAxisRaw("Vertical"));
+        }
+        else if (inputManager.GetButtonUp("Left") || inputManager.GetButtonUp("Right"))
+        {
+            inputDirection = new Vector2(0, Input.GetAxisRaw("Vertical"));
+        }
+        //inputDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     }
 
     private void FixedUpdate() {
