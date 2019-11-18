@@ -14,6 +14,9 @@ public class Cannon : MonoBehaviour {
 
     private bool launch = false;
 
+    //constant to change speed that the barrel spins (1 = 8 second full spin; 8 = 1 second full spin)
+    public const int barrelSpeed = 8; 
+
     void Start()
     {
         sr = this.GetComponent<SpriteRenderer>();
@@ -62,14 +65,14 @@ public class Cannon : MonoBehaviour {
                 break;
         }
 
-        time += 8 * Time.deltaTime;
+        time += barrelSpeed * Time.deltaTime;
         if (cannonCoolDown >= 0)
             cannonCoolDown -= Time.deltaTime;
         if (System.Math.Floor(time) > 7) {
             time = 0;
         }
         
-        Rigidbody2D theBody = Player.thePlayer.body;
+        Rigidbody2D theBody = Player.thePlayer.GetComponent<Rigidbody2D>();
 
 
         
@@ -78,7 +81,7 @@ public class Cannon : MonoBehaviour {
             theBody.position = transform.position;
             theBody.velocity = Vector2.zero;
 
-            if (Input.GetButtonDown("Jump")) {
+            if (InputManager.GetButtonDown("Jump")) {
                 Player.thePlayer.didJump = false;
                 Player.RechargeDash();
                 
@@ -119,7 +122,7 @@ public class Cannon : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        Rigidbody2D theBody = Player.thePlayer.body;
+        Rigidbody2D theBody = Player.thePlayer.GetComponent<Rigidbody2D>();
 
         if (other.gameObject.name == "Player" && cannonCoolDown <= 0) {
             theBody.position = transform.position;
