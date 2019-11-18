@@ -72,7 +72,7 @@ public class Cannon : MonoBehaviour {
             time = 0;
         }
         
-        Rigidbody2D theBody = Player.thePlayer.body;
+        Rigidbody2D theBody = Player.thePlayer.GetComponent<Rigidbody2D>();
 
 
         
@@ -81,7 +81,7 @@ public class Cannon : MonoBehaviour {
             theBody.position = transform.position;
             theBody.velocity = Vector2.zero;
 
-            if (Input.GetButtonDown("Jump")) {
+            if (InputManager.GetButtonDown("Jump")) {
                 Player.thePlayer.didJump = false;
                 Player.RechargeDash();
                 
@@ -122,7 +122,7 @@ public class Cannon : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        Rigidbody2D theBody = Player.thePlayer.body;
+        Rigidbody2D theBody = Player.thePlayer.GetComponent<Rigidbody2D>();
 
         if (other.gameObject.name == "Player" && cannonCoolDown <= 0) {
             theBody.position = transform.position;

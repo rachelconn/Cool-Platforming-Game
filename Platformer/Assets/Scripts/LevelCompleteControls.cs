@@ -51,7 +51,7 @@ public class LevelCompleteControls : MonoBehaviour
     void Update()
     {
         // filter input so user has to press left/right every time selection changes
-        float inputDir = Input.GetAxisRaw("Horizontal");
+        float inputDir = InputManager.GetAxisRaw("Horizontal");
         if (LeftPressed)
             if (inputDir > -inputThreshold)
                 LeftPressed = false;
@@ -71,7 +71,7 @@ public class LevelCompleteControls : MonoBehaviour
         selection.position = transform.Find(buttonNames[selectionNum]).position;
 
         // if player presses jump, confirm selection
-        if (Input.GetButtonDown("Jump")) {
+        if (InputManager.GetButtonDown("Jump") || InputManager.GetButtonDown("Select")) {
             // unfreeze time
             Time.timeScale = 1;
             switch (selectionNum) {
