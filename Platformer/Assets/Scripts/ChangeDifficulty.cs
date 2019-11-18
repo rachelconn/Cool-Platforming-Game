@@ -24,19 +24,23 @@ public class ChangeDifficulty : MonoBehaviour
 
     void ChangeDiff()
     {
+        
         if (myDropDown.value == 0)
         {
+            // Easy Mode
             BarrelSpeed.speed = 6;
         }
         else if (myDropDown.value == 1)
         {
+            // Normal Mode
             BarrelSpeed.speed = 8;
         }
         else if (myDropDown.value == 2)
         {
+            // Hard Mode
             BarrelSpeed.speed = 10;
         }
 
-        Debug.LogError("BarrelSpeed: " + BarrelSpeed.speed);
+        Debug.Log("BarrelSpeed: " + BarrelSpeed.speed);
     }
 }
