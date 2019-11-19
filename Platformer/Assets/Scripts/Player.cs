@@ -312,7 +312,7 @@ public class Player : MonoBehaviour
             isDead = true;
             Debug.Log("You have died.");
             // if player has died 10 times, give them the option to skip level
-            if (++LevelSkip.numDeaths >= 10)
+            if (++LevelSkip.numDeaths >= 10 && InputManager.Pref_ShowSkipDialogue)
             {
                 Time.timeScale = 0;
                 LevelSkip.numDeaths = 0;

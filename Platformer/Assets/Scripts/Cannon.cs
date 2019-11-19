@@ -91,7 +91,6 @@ public class Cannon : MonoBehaviour
                 Player.thePlayer.didJump = false;
                 Player.RechargeDash();
 
-                cannonCoolDown = 0.2;
                 switch (System.Math.Floor(time))
                 {
                     case 0:
@@ -132,8 +131,7 @@ public class Cannon : MonoBehaviour
     {
         Rigidbody2D theBody = Player.thePlayer.body;
 
-        if (other.gameObject.name == "Player" && cannonCoolDown <= 0)
-        {
+        if (other.gameObject.name == "Player") {
             theBody.position = transform.position;
             theBody.velocity = Vector2.zero;
             theBody.gravityScale = 0;
