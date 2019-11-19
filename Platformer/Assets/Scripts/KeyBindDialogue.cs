@@ -22,7 +22,7 @@ public class KeyBindDialogue : MonoBehaviour
         foreach (string bn in names)
         {
 
-            GameObject go = (GameObject)Instantiate(keyItemPrefab, gameObject.transform);
+            GameObject go = (GameObject) Instantiate(keyItemPrefab, gameObject.transform);
             go.transform.localScale = Vector3.one;
 
             // Set the button name
