@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cannon : MonoBehaviour {
-    private double time;
+public class Cannon : MonoBehaviour
+{
+    public double time;
     public Sprite upCannonSprite;
     public Sprite diagCannonSprite;
     public Sprite rightCannonSprite;
     public bool inCannon = false;
-    
+
     private double cannonCoolDown = 0;
     private SpriteRenderer sr;
 
@@ -25,8 +26,10 @@ public class Cannon : MonoBehaviour {
         time = 0;
     }
 
-    void Update() {
-        switch (System.Math.Floor(time)) {
+    void Update()
+    {
+        switch (System.Math.Floor(time))
+        {
             case 0:
                 sr.sprite = upCannonSprite;
                 sr.flipY = false;
@@ -65,28 +68,32 @@ public class Cannon : MonoBehaviour {
                 break;
         }
 
-        time += barrelSpeed * Time.deltaTime;
+        time += BarrelSpeed.speed * Time.deltaTime;
         if (cannonCoolDown >= 0)
             cannonCoolDown -= Time.deltaTime;
-        if (System.Math.Floor(time) > 7) {
+        if (System.Math.Floor(time) > 7)
+        {
             time = 0;
         }
-        
-        Rigidbody2D theBody = Player.thePlayer.GetComponent<Rigidbody2D>();
+
+        Rigidbody2D theBody = Player.thePlayer.body;
 
 
-        
-        if (inCannon) {
-            
+
+        if (inCannon)
+        {
+
             theBody.position = transform.position;
             theBody.velocity = Vector2.zero;
 
-            if (InputManager.GetButtonDown("Jump")) {
+            if (InputManager.GetButtonDown("Jump"))
+            {
                 Player.thePlayer.didJump = false;
                 Player.RechargeDash();
-                
+
                 cannonCoolDown = 0.2;
-                switch (System.Math.Floor(time)) {
+                switch (System.Math.Floor(time))
+                {
                     case 0:
                         theBody.velocity += (new Vector2(0, 1)) * 2.25f * Player.thePlayer.getJumpVelocity();
                         break;
@@ -115,22 +122,24 @@ public class Cannon : MonoBehaviour {
 
                 theBody.gravityScale = 1;
                 inCannon = false;
-                
+
             }
         }
-    
+
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
-        Rigidbody2D theBody = Player.thePlayer.GetComponent<Rigidbody2D>();
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Rigidbody2D theBody = Player.thePlayer.body;
 
-        if (other.gameObject.name == "Player" && cannonCoolDown <= 0) {
+        if (other.gameObject.name == "Player" && cannonCoolDown <= 0)
+        {
             theBody.position = transform.position;
             theBody.velocity = Vector2.zero;
             theBody.gravityScale = 0;
 
             inCannon = true;
-            
+
         }
     }
 

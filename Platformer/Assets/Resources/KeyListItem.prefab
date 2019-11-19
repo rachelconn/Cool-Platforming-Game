@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8132663370484064045}
   - component: {fileID: 1324921713395277276}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,10 +34,10 @@ RectTransform:
   m_Father: {fileID: 1534089631589219782}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.59311205, y: 1}
-  m_AnchoredPosition: {x: 0.39300537, y: 0.42500114}
-  m_SizeDelta: {x: 0.78601, y: -1.1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -131.23, y: -0.425}
+  m_SizeDelta: {x: 144.16, y: 30.85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6853574570879569354
 CanvasRenderer:
@@ -151,10 +151,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 236.65, y: -15.850006}
-  m_SizeDelta: {x: 473.3, y: 31.700012}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 201.7, y: 31.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1534089631575997240
 MonoBehaviour:
@@ -208,10 +208,10 @@ RectTransform:
   m_Father: {fileID: 1534089631589219782}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.59311205, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -0.70000076, y: -2}
+  m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &1534089631730889958
 CanvasRenderer:
@@ -240,7 +240,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    m_Font: {fileID: 12800000, guid: 07aaf11506a0c80438b2546b7cbb06b7, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 1
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 1666829289716750487}
   - component: {fileID: 283994503074883810}
   m_Layer: 5
-  m_Name: Key
+  m_Name: KeyName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -317,7 +317,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    m_Font: {fileID: 12800000, guid: 07aaf11506a0c80438b2546b7cbb06b7, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 1
@@ -329,4 +329,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Key
