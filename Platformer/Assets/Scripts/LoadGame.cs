@@ -14,7 +14,7 @@ public class LoadGame : MonoBehaviour
 {
     string levelNum = "0";
     string saveFile = "autoSave";
-    public static Dictionary<string, KeyCode> keys = InputManager.getKeys();
+    public Dictionary<string, KeyCode> keys = InputManager.getKeys();
 
     private Save CreateSaveGameObject()
     {
@@ -76,7 +76,7 @@ public class LoadGame : MonoBehaviour
             
             levelNum = save.levelNum;
             saveFile = save.saveFile;
-            //keys = save.keys;
+            keys = save.keys;
 
             Debug.Log("Game Loaded");
 

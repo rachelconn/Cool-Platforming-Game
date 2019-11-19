@@ -12,6 +12,6 @@ public class Save
     public string levelNum = "0";
     public string saveFile = "autosave";
 
-    public static Dictionary<string, KeyCode> keys = InputManager.getKeys();
+    public Dictionary<string, KeyCode> keys = InputManager.getKeys();
 
 }
