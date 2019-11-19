@@ -1870,7 +1870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelCompletePrefab: {fileID: 8348566924447291120, guid: 062a6551006f9d642985854c0ff5ab00,
     type: 3}
-  nextLevelScene: Easy2
+  nextLevelScene: Level3
 --- !u!61 &1503962432
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2351,7 +2351,7 @@ PrefabInstance:
     - target: {fileID: 3242021394856175019, guid: b5f5d001f8cbe469fa8871a7188ba761,
         type: 3}
       propertyPath: nextLevelScene
-      value: Easy2
+      value: Level3
       objectReference: {fileID: 0}
     - target: {fileID: 3242021394856175022, guid: b5f5d001f8cbe469fa8871a7188ba761,
         type: 3}
