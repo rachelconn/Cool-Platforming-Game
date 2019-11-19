@@ -299,6 +299,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Unpause
       objectReference: {fileID: 0}
+    - target: {fileID: 8987807997906752013, guid: c843c3aea670d414693e0816fcfd77a8,
+        type: 3}
+      propertyPath: m_MinValue
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987807997906752013, guid: c843c3aea670d414693e0816fcfd77a8,
+        type: 3}
+      propertyPath: m_Value
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987807997906752013, guid: c843c3aea670d414693e0816fcfd77a8,
+        type: 3}
+      propertyPath: m_MaxValue
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8987807998270809258, guid: c843c3aea670d414693e0816fcfd77a8,
         type: 3}
       propertyPath: m_AnchorMin.x

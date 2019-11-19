@@ -14,6 +14,22 @@ public class ChangeDifficulty : MonoBehaviour
     {
         myDropDown = this.GetComponent<Dropdown>();
         myDropDown.onValueChanged.AddListener(delegate { ChangeDiff(); });
+
+        if (BarrelSpeed.speed == 4)
+        {
+            // Easy Mode
+            myDropDown.value = 0;
+        }
+        else if (BarrelSpeed.speed == 6)
+        {
+            // Normal Mode
+            myDropDown.value = 1;
+        }
+        else if (BarrelSpeed.speed == 8)
+        {
+            // Hard Mode
+            myDropDown.value = 2;
+        }
     }
 
     // Update is called once per frame
@@ -28,17 +44,17 @@ public class ChangeDifficulty : MonoBehaviour
         if (myDropDown.value == 0)
         {
             // Easy Mode
-            BarrelSpeed.speed = 6;
+            BarrelSpeed.speed = 4;
         }
         else if (myDropDown.value == 1)
         {
             // Normal Mode
-            BarrelSpeed.speed = 8;
+            BarrelSpeed.speed = 6;
         }
         else if (myDropDown.value == 2)
         {
             // Hard Mode
-            BarrelSpeed.speed = 10;
+            BarrelSpeed.speed = 8;
         }
 
         Debug.Log("BarrelSpeed: " + BarrelSpeed.speed);
