@@ -6,17 +6,14 @@ using System;
 
 public class KeyBindDialogue : MonoBehaviour
 {
-    InputManager inputManager;
     public GameObject keyItemPrefab;
-    public GameObject keyList;
     string buttonToRebind = null;
     Dictionary<string, Text> buttonToLabel;
 
     // Start is called before the first frame update
     void Start()
     {
-        inputManager = GameObject.FindObjectOfType<InputManager>();
-        string[] names = inputManager.GetButtonNames();
+        string[] names = InputManager.GetButtonNames();
         buttonToLabel = new Dictionary<string, Text>();
 
         // Loop through the dictionary in inputManager to 
@@ -24,9 +21,7 @@ public class KeyBindDialogue : MonoBehaviour
         foreach (string bn in names)
         {
 
-            GameObject go = (GameObject)Instantiate(keyItemPrefab);
-            Instantiate(keyItemPrefab);
-            go.transform.SetParent(keyList.transform);
+            GameObject go = (GameObject) Instantiate(keyItemPrefab, gameObject.transform);
             go.transform.localScale = Vector3.one;
 
             // Set the button name
@@ -34,15 +29,15 @@ public class KeyBindDialogue : MonoBehaviour
             Name.text = bn;
 
             // Set the key value
-            Text keyName = go.transform.Find("Key/KeyName").GetComponent<Text>();
-            keyName.text = inputManager.GetKeyNameFor(bn);
+            Text keyName = go.transform.Find("Button/Key").GetComponent<Text>();
+            keyName.text = ProcessName(InputManager.GetKeyNameFor(bn));
             buttonToLabel[bn] = keyName;
 
             // Adds an action listener to the button
-            UnityEngine.UI.Button bindButton = go.transform.Find("Key").GetComponent<UnityEngine.UI.Button>();
-            bindButton.onClick.AddListener(() => { RebindFor(bn); });
+            UnityEngine.UI.Button bindButton = go.transform.Find("Button").GetComponent<UnityEngine.UI.Button>();
+            bindButton.onClick.AddListener( () => { RebindFor(bn); } );
         }
-
+        
 
     }
 
@@ -61,7 +56,7 @@ public class KeyBindDialogue : MonoBehaviour
                     // If found rebind the key, then break from the loop
                     if (Input.GetKeyDown(kc))
                     {
-                        inputManager.SetButtonForKey(buttonToRebind, kc);
+                        InputManager.SetButtonForKey(buttonToRebind, kc);
                         buttonToLabel[buttonToRebind].text = kc.ToString();
                         buttonToRebind = null;
                         break;
@@ -76,4 +71,16 @@ public class KeyBindDialogue : MonoBehaviour
         buttonToRebind = name;
     }
 
+    public static string ProcessName(string name)
+    {
+        return name.Replace("Arrow", " Arrow");
+    }
+
+    /// <summary>
+    /// call a static function in player to restart time system
+    /// </summary>
+    public void Unpause()
+    {
+        Player.Unpause();
+    }
 }

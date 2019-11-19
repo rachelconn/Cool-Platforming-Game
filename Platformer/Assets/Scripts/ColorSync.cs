@@ -1,5 +1,8 @@
 ﻿public enum COLORSYNC : short
 {
     ORANGE,
-    PINK
+    PURPLE,
+    TEAL,
+    PAUL,
+    TAELE
 }
