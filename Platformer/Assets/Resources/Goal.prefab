@@ -120,5 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bcfe38939716e041b514fa829741609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelCompletePrefab: {fileID: 2006389605461485351, guid: b666bd76fa48a8842accc978e48d2948,
+  levelCompletePrefab: {fileID: 8348566924447291120, guid: 062a6551006f9d642985854c0ff5ab00,
     type: 3}
+  nextLevelScene: 
