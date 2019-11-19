@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public Rigidbody2D body;
     private BoxCollider2D myCollider;
     private SpriteRenderer spriteRenderer;
+    private static bool isDead;
     private bool onGround;
     public bool didJump;
     private bool didDash;
@@ -214,6 +215,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        isDead = false;
         body = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -293,16 +295,19 @@ public class Player : MonoBehaviour
     /// </summary>
     public static void ReloadLevel()
     {
-        Debug.Log("You have died.");
-        // if player has died 10 times, give them the option to skip level
-        if (++LevelSkip.numDeaths >= 10)
-        {
-            Time.timeScale = 0;
-            LevelSkip.numDeaths = 0;
-            GameObject levelSkipScreen = (GameObject)Instantiate(Resources.Load("LevelSkipUI"));
+        if (!isDead) {
+            isDead = true;
+            Debug.Log("You have died.");
+            // if player has died 10 times, give them the option to skip level
+            if (++LevelSkip.numDeaths >= 10)
+            {
+                Time.timeScale = 0;
+                LevelSkip.numDeaths = 0;
+                GameObject levelSkipScreen = (GameObject)Instantiate(Resources.Load("LevelSkipUI"));
+            }
+            else
+                SceneManager.LoadScene(currentLevel);
         }
-        else
-            SceneManager.LoadScene(currentLevel);
     }
 
     /// <summary>
