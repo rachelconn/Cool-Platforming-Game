@@ -30,14 +30,20 @@ public class LevelCompleteControls : MonoBehaviour
     }
 
     public void Retry() {
+        // unfreeze time
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
     }
 
     public void Continue() {
+        // unfreeze time
+        Time.timeScale = 1;
         SceneManager.LoadScene(nextLevelScene, LoadSceneMode.Single);
     }
 
     public void Exit() {
+        // unfreeze time
+        Time.timeScale = 1;
         Application.Quit();
     }
 
@@ -84,8 +90,6 @@ public class LevelCompleteControls : MonoBehaviour
 
         // if player presses jump, confirm selection
         if (InputManager.GetButtonDown("Jump") || InputManager.GetButtonDown("Select")) {
-            // unfreeze time
-            Time.timeScale = 1;
             switch (selectionNum) {
                 case 0: Retry(); break;
                 case 1: Continue(); break;
