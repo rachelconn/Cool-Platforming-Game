@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Cannon : MonoBehaviour {
-    public double time;
+    private double time;
     public Sprite upCannonSprite;
     public Sprite diagCannonSprite;
     public Sprite rightCannonSprite;
@@ -15,7 +15,7 @@ public class Cannon : MonoBehaviour {
     private bool launch = false;
 
     //constant to change speed that the barrel spins (1 = 8 second full spin; 8 = 1 second full spin)
-    public const int barrelSpeed = 8; 
+    public int barrelSpeed;
 
     void Start()
     {

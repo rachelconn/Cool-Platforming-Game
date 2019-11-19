@@ -23,7 +23,7 @@ public class Tutorial : MonoBehaviour
         else if (player.position.x < 22)
             text.SetText("Press Z to jump.");
         else if (player.position.x < 30)
-            text.SetText("Press X and any direction to dash in that direction.");
+            text.SetText("Press X and any direction to dash in that direction. Dash in the air for a double jump!");
         else
             text.SetText("Press jump while touching a wall to wall jump.");
     }
