@@ -30,12 +30,12 @@ public class KeyBindDialogue : MonoBehaviour
             Name.text = bn;
 
             // Set the key value
-            Text keyName = go.transform.Find("Key/KeyName").GetComponent<Text>();
+            Text keyName = go.transform.Find("Button/Key").GetComponent<Text>();
             keyName.text = ProcessName(InputManager.GetKeyNameFor(bn));
             buttonToLabel[bn] = keyName;
 
             // Adds an action listener to the button
-            UnityEngine.UI.Button bindButton = go.transform.Find("Key").GetComponent<UnityEngine.UI.Button>();
+            UnityEngine.UI.Button bindButton = go.transform.Find("Button").GetComponent<UnityEngine.UI.Button>();
             bindButton.onClick.AddListener(() => { RebindFor(bn); });
         }
 
@@ -82,14 +82,6 @@ public class KeyBindDialogue : MonoBehaviour
     /// </summary>
     public void Unpause()
     {
-        if (Player.isPaused())
-        {
-            SceneManager.UnloadSceneAsync("Settings");
-            Player.Unpause();
-        }
-        else
-        {
-            SceneManager.LoadScene("Title");
-        }
+        Player.Unpause();
     }
 }

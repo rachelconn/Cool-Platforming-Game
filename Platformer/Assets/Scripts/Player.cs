@@ -251,9 +251,9 @@ public class Player : MonoBehaviour
         {
             if (settingsUIInstance == null)
             {
-                //settingsUIInstance = Instantiate(settingsUI);
+                settingsUIInstance = Instantiate(settingsUI);
                 _Pause();
-                SceneManager.LoadScene("Settings", LoadSceneMode.Additive);
+                //SceneManager.LoadScene("Settings", LoadSceneMode.Additive);
             }
             else
             {
