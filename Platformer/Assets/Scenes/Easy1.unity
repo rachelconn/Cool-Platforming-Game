@@ -990,6 +990,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5492798332645443559, guid: f6b97793758dc407f90c3270e6876270,
+        type: 3}
+      propertyPath: RechargeTime
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6b97793758dc407f90c3270e6876270, type: 3}
 --- !u!1 &532318185
@@ -1091,7 +1096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94952fd652f4d28449c0724402bbf4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RechargeTime: 5
+  RechargeTime: 3
   cooldown: 0
   spr_ready: {fileID: 21300000, guid: d3e6d2e75591f495f8f8faa7fa7bfa00, type: 3}
   spr_notReady: {fileID: 21300000, guid: 4cddf3023efce364e8945aa8c5cf5a11, type: 3}
@@ -1327,6 +1332,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5492798332645443559, guid: f6b97793758dc407f90c3270e6876270,
+        type: 3}
+      propertyPath: RechargeTime
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6b97793758dc407f90c3270e6876270, type: 3}
@@ -1729,7 +1739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94952fd652f4d28449c0724402bbf4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RechargeTime: 5
+  RechargeTime: 3
   cooldown: 0
   spr_ready: {fileID: 21300000, guid: d3e6d2e75591f495f8f8faa7fa7bfa00, type: 3}
   spr_notReady: {fileID: 21300000, guid: 4cddf3023efce364e8945aa8c5cf5a11, type: 3}
@@ -1860,7 +1870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelCompletePrefab: {fileID: 8348566924447291120, guid: 062a6551006f9d642985854c0ff5ab00,
     type: 3}
-  nextLevelScene: Medium0
+  nextLevelScene: Easy2
 --- !u!61 &1503962432
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1986,7 +1996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94952fd652f4d28449c0724402bbf4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RechargeTime: 5
+  RechargeTime: 3
   cooldown: 0
   spr_ready: {fileID: 21300000, guid: d3e6d2e75591f495f8f8faa7fa7bfa00, type: 3}
   spr_notReady: {fileID: 21300000, guid: 4cddf3023efce364e8945aa8c5cf5a11, type: 3}
@@ -2148,6 +2158,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5492798332645443559, guid: f6b97793758dc407f90c3270e6876270,
+        type: 3}
+      propertyPath: RechargeTime
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6b97793758dc407f90c3270e6876270, type: 3}
@@ -2336,7 +2351,7 @@ PrefabInstance:
     - target: {fileID: 3242021394856175019, guid: b5f5d001f8cbe469fa8871a7188ba761,
         type: 3}
       propertyPath: nextLevelScene
-      value: Medium0
+      value: Easy2
       objectReference: {fileID: 0}
     - target: {fileID: 3242021394856175022, guid: b5f5d001f8cbe469fa8871a7188ba761,
         type: 3}

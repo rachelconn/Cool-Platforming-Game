@@ -30,8 +30,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Template2.unity
     guid: e80098b80bcb044e48f1312b9c9d6201
   - enabled: 1
-    path: Assets/Scenes/Template.unity
+    path: Assets/Scenes/Hard1.unity
     guid: f1ef7b3b7b1834b5f89767f74707a83d
+  - enabled: 1
+    path: Assets/Scenes/Easy2.unity
+    guid: 5410d6dea58df794287ea50c0a5aca73
+  - enabled: 1
+    path: Assets/Scenes/Easy3.unity
+    guid: 7d1915c7b4e67fd48befdd2b264185d9
   - enabled: 1
     path: Assets/Scenes/Medium3.unity
     guid: b88ca0387b5b6401aa6f783dfb1ceb0b
