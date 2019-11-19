@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -17,21 +18,26 @@ public class LevelCompleteControls : MonoBehaviour
     // don't interpret axis movement as button press unless it goes under the threshold before pressing again
     public float inputThreshold;
 
+    public Sprite spr_selected;
+    public Sprite spr_deselected;
+
+    private Image lastSelected = null;
+
     void ChangeSelection(int amount) {
         int newSelection = selectionNum + amount;
         if (newSelection >= 0 && newSelection < buttonNames.Length)
             selectionNum = newSelection;
     }
 
-    void Retry() {
+    public void Retry() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
     }
 
-    void Continue() {
+    public void Continue() {
         SceneManager.LoadScene(nextLevelScene, LoadSceneMode.Single);
     }
 
-    void Exit() {
+    public void Exit() {
         Application.Quit();
     }
 
@@ -68,7 +74,13 @@ public class LevelCompleteControls : MonoBehaviour
         }
 
         // update position of selection
-        selection.position = transform.Find(buttonNames[selectionNum]).position;
+        // selection.position = transform.Find(buttonNames[selectionNum]).position;
+        if (lastSelected != null)
+        {
+            lastSelected.sprite = spr_deselected;
+        }
+        lastSelected = GameObject.Find(buttonNames[selectionNum]).GetComponent<Image>();
+        lastSelected.sprite = spr_selected;
 
         // if player presses jump, confirm selection
         if (InputManager.GetButtonDown("Jump") || InputManager.GetButtonDown("Select")) {
