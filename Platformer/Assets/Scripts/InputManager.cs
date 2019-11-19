@@ -5,6 +5,8 @@ using System.Linq;
 
 public static class InputManager
 {
+    public static bool Pref_ShowSkipDialogue = true;
+
     private static Dictionary<string, KeyCode> keys = new Dictionary<string, KeyCode>()
     {
         {"Jump", KeyCode.Z },

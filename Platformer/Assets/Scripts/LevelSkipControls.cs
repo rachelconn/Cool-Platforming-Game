@@ -11,7 +11,7 @@ public class LevelSkipControls : MonoBehaviour
     private int selectionNum;
     private bool LeftPressed;
     private bool RightPressed;
-    private string[] buttonNames = {"No Button", "Yes Button"};
+    private string[] buttonNames = {"No Button", "Yes Button", "Never Button"};
     public string nextLevelScene;
     public TimeSpan timeToComplete;
     // public Transform selection;
@@ -41,6 +41,12 @@ public class LevelSkipControls : MonoBehaviour
         Time.timeScale = 1;
         string nextLevelScene = GameObject.Find("Goal").GetComponent<Goal>().nextLevelScene;
         SceneManager.LoadScene(nextLevelScene, LoadSceneMode.Single);
+    }
+
+    public void DisableSkipDialogue()
+    {
+        InputManager.Pref_ShowSkipDialogue = false;
+        Retry();
     }
 
     void Start()
@@ -85,6 +91,7 @@ public class LevelSkipControls : MonoBehaviour
                 case 0: Retry(); break;
                 // Yes, skip:
                 case 1: Continue(); break;
+                case 2: DisableSkipDialogue(); break;
             }
         }
     }
