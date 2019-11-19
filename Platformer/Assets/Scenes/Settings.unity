@@ -126,7 +126,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1128866518}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1778785483}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 703dfbbe9b557094d8da56d08091cb91, type: 3}
@@ -271,18 +271,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8987807997670122650, guid: c843c3aea670d414693e0816fcfd77a8,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987807997670122650, guid: c843c3aea670d414693e0816fcfd77a8,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1091995094}
+      objectReference: {fileID: 1778785483}
     - target: {fileID: 8987807997670122650, guid: c843c3aea670d414693e0816fcfd77a8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Unpause
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8987807997670122650, guid: c843c3aea670d414693e0816fcfd77a8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987807997670122650, guid: c843c3aea670d414693e0816fcfd77a8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1091995094}
+    - target: {fileID: 8987807997670122650, guid: c843c3aea670d414693e0816fcfd77a8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Unpause
       objectReference: {fileID: 0}
     - target: {fileID: 8987807998270809258, guid: c843c3aea670d414693e0816fcfd77a8,
         type: 3}
@@ -600,6 +615,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1778785483 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8987807997811267187, guid: c843c3aea670d414693e0816fcfd77a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1128866518}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1940921063
 GameObject:
   m_ObjectHideFlags: 0

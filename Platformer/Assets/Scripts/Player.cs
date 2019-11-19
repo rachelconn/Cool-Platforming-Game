@@ -246,8 +246,9 @@ public class Player : MonoBehaviour
         {
             if (!settingsUI.activeInHierarchy)
             {
-                Instantiate(settingsUI);
+                //Instantiate(settingsUI);
                 _Pause();
+                SceneManager.LoadScene("Settings", LoadSceneMode.Additive);
             }
             else
             {
@@ -271,6 +272,15 @@ public class Player : MonoBehaviour
     public void _Pause()
     {
         Time.timeScale = 0f;
+    }
+
+    public static bool isPaused()
+    {
+        if (Time.timeScale == 0f)
+        {
+            return true;
+        }
+        return false;
     }
 
     public void _Unpause()
