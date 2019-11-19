@@ -120,8 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 194993bb5d8624e1ca53fcbb3daaef3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 1.2761160023510456
   upCannonSprite: {fileID: 21300000, guid: 6c234b4e004a541388ab2e0a7d79fa79, type: 3}
   diagCannonSprite: {fileID: 21300000, guid: 3cdcbabc0662c48eea334f778c0895bc, type: 3}
   rightCannonSprite: {fileID: 21300000, guid: 7a685abbfada24b049b88c51d4a9a3aa, type: 3}
   inCannon: 0
+  barrelSpeed: 6
