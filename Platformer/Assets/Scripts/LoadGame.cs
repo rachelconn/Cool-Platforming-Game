@@ -70,7 +70,7 @@ public class LoadGame : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene(save.levelNum);
+                SceneManager.LoadScene("Level" + save.levelNum);
             }
             
             levelNum = save.levelNum;
