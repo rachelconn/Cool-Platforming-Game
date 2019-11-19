@@ -63,7 +63,7 @@ public class LevelSkipControls : MonoBehaviour
         selection.position = transform.Find(buttonNames[selectionNum]).position;
 
         // if player presses jump, confirm selection
-        if (Input.GetButtonDown("Jump") || inputDir.GetButtonDown("Select")) {
+        if (InputManager.GetButtonDown("Jump") || InputManager.GetButtonDown("Select")) {
             // unfreeze time
             Time.timeScale = 1;
             switch (selectionNum) {
