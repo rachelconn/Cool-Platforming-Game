@@ -9,7 +9,7 @@ public class ChangeDifficulty : MonoBehaviour
 {
     private Dropdown myDropDown;
 
-    private bool HEURISTIC_BROKEN = false;
+    private static bool HEURISTIC_BROKEN = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class ChangeDifficulty : MonoBehaviour
         else
         {
             Debug.LogError("myDropDown not fixed yet reee");
-            HEURISTIC_BROKEN = true;
+            ChangeDifficulty.HEURISTIC_BROKEN = true;
             return;
         }
 
@@ -51,7 +51,7 @@ public class ChangeDifficulty : MonoBehaviour
 
     void ChangeDiff()
     {
-        if (HEURISTIC_BROKEN)
+        if (ChangeDifficulty.HEURISTIC_BROKEN)
         {
             return;
         }
