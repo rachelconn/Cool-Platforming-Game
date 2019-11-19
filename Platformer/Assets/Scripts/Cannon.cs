@@ -85,7 +85,6 @@ public class Cannon : MonoBehaviour {
                 Player.thePlayer.didJump = false;
                 Player.RechargeDash();
                 
-                cannonCoolDown = 0.2;
                 switch (System.Math.Floor(time)) {
                     case 0:
                         theBody.velocity += (new Vector2(0, 1)) * 2.25f * Player.thePlayer.getJumpVelocity();
@@ -124,7 +123,7 @@ public class Cannon : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other) {
         Rigidbody2D theBody = Player.thePlayer.GetComponent<Rigidbody2D>();
 
-        if (other.gameObject.name == "Player" && cannonCoolDown <= 0) {
+        if (other.gameObject.name == "Player") {
             theBody.position = transform.position;
             theBody.velocity = Vector2.zero;
             theBody.gravityScale = 0;
