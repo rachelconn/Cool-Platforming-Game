@@ -28,6 +28,11 @@ public static class InputManager
         return Input.GetKeyDown(keys[name]);
     }
 
+    public static Dictionary<string, KeyCode> getKeys()
+    {
+        return keys;
+    }
+
     public static bool GetButton(string name)
     {
         if (!keys.ContainsKey(name))
