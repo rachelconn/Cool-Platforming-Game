@@ -86,7 +86,7 @@ public class Cannon : MonoBehaviour
             theBody.position = transform.position;
             theBody.velocity = Vector2.zero;
 
-            if (Input.GetButtonDown("Jump"))
+            if (InputManager.GetButtonDown("Jump"))
             {
                 Player.thePlayer.didJump = false;
                 Player.RechargeDash();

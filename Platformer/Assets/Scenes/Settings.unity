@@ -307,12 +307,12 @@ PrefabInstance:
     - target: {fileID: 8987807997906752013, guid: c843c3aea670d414693e0816fcfd77a8,
         type: 3}
       propertyPath: m_Value
-      value: -30
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 8987807997906752013, guid: c843c3aea670d414693e0816fcfd77a8,
         type: 3}
       propertyPath: m_MaxValue
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8987807998270809258, guid: c843c3aea670d414693e0816fcfd77a8,
         type: 3}
