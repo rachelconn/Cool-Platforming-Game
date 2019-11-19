@@ -14,7 +14,7 @@ public class LevelCompleteControls : MonoBehaviour
     private string[] buttonNames = {"Retry Button", "Continue Button", "Exit Button"};
     public string nextLevelScene;
     public TimeSpan timeToComplete;
-    public Transform selection;
+    // public Transform selection;
     // don't interpret axis movement as button press unless it goes under the threshold before pressing again
     public float inputThreshold;
 
