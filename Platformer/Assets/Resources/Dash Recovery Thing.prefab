@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94952fd652f4d28449c0724402bbf4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RechargeTime: 5
+  RechargeTime: 3
   cooldown: 0
   spr_ready: {fileID: 21300000, guid: d3e6d2e75591f495f8f8faa7fa7bfa00, type: 3}
   spr_notReady: {fileID: 21300000, guid: 4cddf3023efce364e8945aa8c5cf5a11, type: 3}

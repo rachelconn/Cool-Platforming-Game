@@ -181,6 +181,8 @@ public class Player : MonoBehaviour
 
     private void HandleDash()
     {
+        // reset gravity in case dash stops externally
+        body.gravityScale = 1;
         // update if player is able to dash
         if (onGround)
             canDash = true;
@@ -194,6 +196,7 @@ public class Player : MonoBehaviour
         // continue dashing
         if (timeDashing != 0 && timeDashing < dashTime)
         {
+            body.gravityScale = 0;
             body.velocity = dashSpeed * dashDirection * Time.fixedDeltaTime;
             timeDashing += Time.fixedDeltaTime;
         }
