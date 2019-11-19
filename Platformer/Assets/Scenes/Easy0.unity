@@ -1983,7 +1983,7 @@ PrefabInstance:
     - target: {fileID: 8481342381072742902, guid: a96a514d196ee714da9b50ac5965eb4a,
         type: 3}
       propertyPath: MessageToShow
-      value: Press jump when bouncing on the spring to jump even higher
+      value: Hold jump when bouncing on the spring to jump even higher
       objectReference: {fileID: 0}
     - target: {fileID: 4198967756934984160, guid: a96a514d196ee714da9b50ac5965eb4a,
         type: 3}
