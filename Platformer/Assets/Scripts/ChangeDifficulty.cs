@@ -9,11 +9,22 @@ public class ChangeDifficulty : MonoBehaviour
 {
     private Dropdown myDropDown;
 
+    private bool HEURISTIC_BROKEN = false;
+
     // Start is called before the first frame update
     void Start()
     {
         myDropDown = this.GetComponent<Dropdown>();
-        myDropDown.onValueChanged.AddListener(delegate { ChangeDiff(); });
+        if (myDropDown != null)
+        {
+            myDropDown.onValueChanged.AddListener(delegate { ChangeDiff(); });
+        }
+        else
+        {
+            Debug.LogError("myDropDown not fixed yet reee");
+            HEURISTIC_BROKEN = true;
+            return;
+        }
 
         if (BarrelSpeed.speed == 4)
         {
@@ -40,7 +51,10 @@ public class ChangeDifficulty : MonoBehaviour
 
     void ChangeDiff()
     {
-        
+        if (HEURISTIC_BROKEN)
+        {
+            return;
+        }
         if (myDropDown.value == 0)
         {
             // Easy Mode
