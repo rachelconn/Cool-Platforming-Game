@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Cannon : MonoBehaviour {
-    public double time;
+    private double time;
     public Sprite upCannonSprite;
     public Sprite diagCannonSprite;
     public Sprite rightCannonSprite;
@@ -15,7 +15,7 @@ public class Cannon : MonoBehaviour {
     private bool launch = false;
 
     //constant to change speed that the barrel spins (1 = 8 second full spin; 8 = 1 second full spin)
-    public const int barrelSpeed = 8; 
+    public int barrelSpeed;
 
     void Start()
     {
@@ -88,28 +88,28 @@ public class Cannon : MonoBehaviour {
                 cannonCoolDown = 0.2;
                 switch (System.Math.Floor(time)) {
                     case 0:
-                        theBody.velocity += (new Vector2(0, 1)) * 3 * Player.thePlayer.getJumpVelocity();
+                        theBody.velocity += (new Vector2(0, 1)) * 2.25f * Player.thePlayer.getJumpVelocity();
                         break;
                     case 1:
-                        theBody.velocity += (new Vector2(1, 1)) * 3 * Player.thePlayer.getJumpVelocity();
+                        theBody.velocity += (new Vector2(1, 1)) * 2.5f * Player.thePlayer.getJumpVelocity();
                         break;
                     case 2:
-                        theBody.velocity += (new Vector2(1, 0)) * 3 * Player.thePlayer.getJumpVelocity();
+                        theBody.velocity += (new Vector2(1, 0)) * 2.5f * Player.thePlayer.getJumpVelocity();
                         break;
                     case 3:
-                        theBody.velocity += (new Vector2(1, -1)) * 3 * Player.thePlayer.getJumpVelocity();
+                        theBody.velocity += (new Vector2(1, -1)) * 2.5f * Player.thePlayer.getJumpVelocity();
                         break;
                     case 4:
-                        theBody.velocity += (new Vector2(0, -1)) * 3 * Player.thePlayer.getJumpVelocity();
+                        theBody.velocity += (new Vector2(0, -1)) * 2.5f * Player.thePlayer.getJumpVelocity();
                         break;
                     case 5:
-                        theBody.velocity += (new Vector2(-1, -1)) * 3 * Player.thePlayer.getJumpVelocity();
+                        theBody.velocity += (new Vector2(-1, -1)) * 2.5f * Player.thePlayer.getJumpVelocity();
                         break;
                     case 6:
-                        theBody.velocity += (new Vector2(-1, 0)) * 3 * Player.thePlayer.getJumpVelocity();
+                        theBody.velocity += (new Vector2(-1, 0)) * 2.5f * Player.thePlayer.getJumpVelocity();
                         break;
                     case 7:
-                        theBody.velocity += (new Vector2(-1, 1)) * 3 * Player.thePlayer.getJumpVelocity();
+                        theBody.velocity += (new Vector2(-1, 1)) * 2.5f * Player.thePlayer.getJumpVelocity();
                         break;
                 }
 

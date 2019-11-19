@@ -10,11 +10,12 @@ public class Player : MonoBehaviour
     public static Player thePlayer;
 
     public GameObject settingsUI;
-
+    private GameObject settingsUIInstance = null;
 
     public Rigidbody2D body;
     private BoxCollider2D myCollider;
     private SpriteRenderer spriteRenderer;
+    private static bool isDead;
     private bool onGround;
     public bool didJump;
     private bool didDash;
@@ -180,6 +181,8 @@ public class Player : MonoBehaviour
 
     private void HandleDash()
     {
+        // reset gravity in case dash stops externally
+        body.gravityScale = 1;
         // update if player is able to dash
         if (onGround)
             canDash = true;
@@ -193,6 +196,7 @@ public class Player : MonoBehaviour
         // continue dashing
         if (timeDashing != 0 && timeDashing < dashTime)
         {
+            body.gravityScale = 0;
             body.velocity = dashSpeed * dashDirection * Time.fixedDeltaTime;
             timeDashing += Time.fixedDeltaTime;
         }
@@ -214,6 +218,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        isDead = false;
         body = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -244,9 +249,9 @@ public class Player : MonoBehaviour
         }
         if (InputManager.GetButtonDown("Settings"))
         {
-            if (!settingsUI.activeInHierarchy)
+            if (settingsUIInstance == null)
             {
-                Instantiate(settingsUI);
+                settingsUIInstance = Instantiate(settingsUI);
                 _Pause();
             }
             else
@@ -293,16 +298,19 @@ public class Player : MonoBehaviour
     /// </summary>
     public static void ReloadLevel()
     {
-        Debug.Log("You have died.");
-        // if player has died 10 times, give them the option to skip level
-        if (++LevelSkip.numDeaths >= 10)
-        {
-            Time.timeScale = 0;
-            LevelSkip.numDeaths = 0;
-            GameObject levelSkipScreen = (GameObject)Instantiate(Resources.Load("LevelSkipUI"));
+        if (!isDead) {
+            isDead = true;
+            Debug.Log("You have died.");
+            // if player has died 10 times, give them the option to skip level
+            if (++LevelSkip.numDeaths >= 10)
+            {
+                Time.timeScale = 0;
+                LevelSkip.numDeaths = 0;
+                GameObject levelSkipScreen = (GameObject)Instantiate(Resources.Load("LevelSkipUI"));
+            }
+            else
+                SceneManager.LoadScene(currentLevel);
         }
-        else
-            SceneManager.LoadScene(currentLevel);
     }
 
     /// <summary>
@@ -339,5 +347,6 @@ public class Player : MonoBehaviour
 
         // stop dashing if player jumped
         timeDashing = 0;
+        RechargeDash();
     }
 }
