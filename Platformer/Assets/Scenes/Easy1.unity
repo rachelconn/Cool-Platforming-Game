@@ -1543,10 +1543,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4198967756934984160, guid: a0779f731b3e744ad83150b5b78972ea,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4198967756934984160, guid: a0779f731b3e744ad83150b5b78972ea,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4198967756934984160, guid: a0779f731b3e744ad83150b5b78972ea,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4198967756934984160, guid: a0779f731b3e744ad83150b5b78972ea,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8481342381072742897, guid: a0779f731b3e744ad83150b5b78972ea,
         type: 3}
       propertyPath: m_Name
       value: ContextualReminder
+      objectReference: {fileID: 0}
+    - target: {fileID: 8481342381072742902, guid: a0779f731b3e744ad83150b5b78972ea,
+        type: 3}
+      propertyPath: MessageToShow
+      value: See that green thing? It gives you another dash
       objectReference: {fileID: 0}
     - target: {fileID: 8481342381072742900, guid: a0779f731b3e744ad83150b5b78972ea,
         type: 3}
@@ -1601,31 +1626,6 @@ PrefabInstance:
     - target: {fileID: 8481342381072742900, guid: a0779f731b3e744ad83150b5b78972ea,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8481342381072742902, guid: a0779f731b3e744ad83150b5b78972ea,
-        type: 3}
-      propertyPath: MessageToShow
-      value: See that green thing? It gives you another dash
-      objectReference: {fileID: 0}
-    - target: {fileID: 4198967756934984160, guid: a0779f731b3e744ad83150b5b78972ea,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4198967756934984160, guid: a0779f731b3e744ad83150b5b78972ea,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4198967756934984160, guid: a0779f731b3e744ad83150b5b78972ea,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4198967756934984160, guid: a0779f731b3e744ad83150b5b78972ea,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1792,9 +1792,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bcfe38939716e041b514fa829741609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelCompletePrefab: {fileID: 2006389605461485351, guid: b666bd76fa48a8842accc978e48d2948,
+  levelCompletePrefab: {fileID: 8348566924447291120, guid: 062a6551006f9d642985854c0ff5ab00,
     type: 3}
-  nextLevelScene: 
+  nextLevelScene: Medium0
 --- !u!61 &1503962432
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2266,6 +2266,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Goal
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242021394856175019, guid: b5f5d001f8cbe469fa8871a7188ba761,
+        type: 3}
+      propertyPath: nextLevelScene
+      value: Medium0
       objectReference: {fileID: 0}
     - target: {fileID: 3242021394856175022, guid: b5f5d001f8cbe469fa8871a7188ba761,
         type: 3}
