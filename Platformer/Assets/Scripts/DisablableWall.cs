@@ -45,7 +45,7 @@ public class DisablableWall : MonoBehaviour
                 }
             }
             
-            if (registeredButton.isPressed())
+            if (registeredButton != null && registeredButton.isPressed())
             {
                 Deactivate();
             }
