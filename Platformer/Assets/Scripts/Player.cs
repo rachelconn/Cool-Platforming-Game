@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public static Player thePlayer;
 
     public GameObject settingsUI;
-
+    private GameObject settingsUIInstance = null;
 
     public Rigidbody2D body;
     private BoxCollider2D myCollider;
@@ -246,9 +246,9 @@ public class Player : MonoBehaviour
         }
         if (InputManager.GetButtonDown("Settings"))
         {
-            if (!settingsUI.activeInHierarchy)
+            if (settingsUIInstance == null)
             {
-                Instantiate(settingsUI);
+                settingsUIInstance = Instantiate(settingsUI);
                 _Pause();
             }
             else
