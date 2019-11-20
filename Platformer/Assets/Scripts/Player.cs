@@ -310,7 +310,8 @@ public class Player : MonoBehaviour
 
     public static void Unpause()
     {
-        Player.thePlayer._Unpause();
+        if (Player.thePlayer != null)
+            Player.thePlayer._Unpause();
     }
 
     /// <summary>

@@ -17,6 +17,5 @@ public class NewGame : MonoBehaviour
 
     public void SettingsScreen() {
         Instantiate(settingsUI);
-        SceneManager.LoadScene("Settings", LoadSceneMode.Additive);
     }
 }
