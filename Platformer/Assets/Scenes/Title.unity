@@ -163,7 +163,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: b6798652f373a05469cece4044443327, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -546,7 +546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34257356a3663794090a0181b6a49c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settingsUI: {fileID: 8987807998571762000, guid: c843c3aea670d414693e0816fcfd77a8,
+  settingsUI: {fileID: 8987807998571762000, guid: 7e47b2142db7bf540baa7171a1fdbf2d,
     type: 3}
 --- !u!4 &431729458
 Transform:
