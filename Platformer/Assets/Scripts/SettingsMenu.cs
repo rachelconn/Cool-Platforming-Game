@@ -8,6 +8,11 @@ public class SettingsMenu : MonoBehaviour
 
     public AudioMixer audioMixer;
 
+    private void Start() {
+        float f;
+        audioMixer.GetFloat("volume", out f);
+        GameObject.Find("VolumeSlider").GetComponent<UnityEngine.UI.Slider>().value = f;
+    }
     // Set the volume
     public void SetVolume(float volume)
     {
