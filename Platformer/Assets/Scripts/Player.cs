@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
 
     public GameObject settingsUI;
     private GameObject settingsUIInstance = null;
+    public AudioSource oofSound;
+    public GameObject oofFlash;
 
     public Rigidbody2D body;
     private BoxCollider2D myCollider;
@@ -218,6 +220,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        oofSound = GetComponent<AudioSource>();
         isDead = false;
         body = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<BoxCollider2D>();
@@ -235,18 +238,24 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.transform.position.y < -10.0f)
+        if (!isDead)
         {
-            ReloadLevel();
+            if (gameObject.transform.position.y < -10.0f)
+            {
+                ReloadLevel();
+            }
+            if (InputManager.GetButtonDown("Jump"))
+            {
+                didJump = true;
+            }
+            if (InputManager.GetButtonDown("Dash"))
+            {
+                didDash = true;
+            }
+            inputDirection = new Vector2(InputManager.GetAxisRaw("Horizontal"), InputManager.GetAxisRaw("Vertical"));
+
         }
-        if (InputManager.GetButtonDown("Jump"))
-        {
-            didJump = true;
-        }
-        if (InputManager.GetButtonDown("Dash"))
-        {
-            didDash = true;
-        }
+
         if (InputManager.GetButtonDown("Settings"))
         {
             if (settingsUIInstance == null)
@@ -260,7 +269,6 @@ public class Player : MonoBehaviour
                 // user may be rebinding keys so don't do anything
             }
         }
-        inputDirection = new Vector2(InputManager.GetAxisRaw("Horizontal"), InputManager.GetAxisRaw("Vertical"));
     }
 
     private void FixedUpdate()
@@ -304,23 +312,57 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
+    /// notify the player through various feedback that they died
+    /// </summary>
+    public IEnumerator kill()
+    {
+        isDead = true;
+        Debug.Log("You have died.");
+        oofSound.Play();
+        StartCoroutine(KillScreenFlash());
+        yield return new WaitForSeconds(0.7f);
+        // if player has died 10 times, give them the option to skip level
+        if (++LevelSkip.numDeaths >= 10 && InputManager.Pref_ShowSkipDialogue)
+        {
+            Time.timeScale = 0;
+            LevelSkip.numDeaths = 0;
+            GameObject levelSkipScreen = (GameObject)Instantiate(Resources.Load("LevelSkipUI"));
+        }
+        else
+        {
+            SceneManager.LoadScene(currentLevel);
+        }
+    }
+
+    public IEnumerator KillScreenFlash()
+    {
+        GameObject go = Instantiate(oofFlash);
+        Image im = go.GetComponentInChildren<Image>();
+        for (float i = 0f; i < 1f; i += 0.06f)
+        {
+            Color temp = im.color;
+            temp.a = i;
+            im.color = temp;
+            Debug.Log(string.Format("alpha set to {0}", i));
+            yield return new WaitForSeconds(0.5f / 15.0f);
+        }
+        Color temp2 = im.color;
+        temp2.a = 1;
+        im.color = temp2;
+        yield return new WaitForEndOfFrame();
+    }
+
+    public void _Kill()
+    {
+        StartCoroutine(kill());
+    }
+
+    /// <summary>
     /// public handle for level reloading due to die
     /// </summary>
     public static void ReloadLevel()
     {
-        if (!isDead) {
-            isDead = true;
-            Debug.Log("You have died.");
-            // if player has died 10 times, give them the option to skip level
-            if (++LevelSkip.numDeaths >= 10 && InputManager.Pref_ShowSkipDialogue)
-            {
-                Time.timeScale = 0;
-                LevelSkip.numDeaths = 0;
-                GameObject levelSkipScreen = (GameObject)Instantiate(Resources.Load("LevelSkipUI"));
-            }
-            else
-                SceneManager.LoadScene(currentLevel);
-        }
+        Player.thePlayer._Kill();
     }
 
     /// <summary>
