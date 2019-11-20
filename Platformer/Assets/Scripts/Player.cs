@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     public GameObject oofFlash;
     private bool deathInProgress;
 
+    public static float volumeLevel;
+
     public Rigidbody2D body;
     private BoxCollider2D myCollider;
     private SpriteRenderer spriteRenderer;
