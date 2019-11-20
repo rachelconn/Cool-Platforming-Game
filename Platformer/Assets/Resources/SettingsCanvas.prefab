@@ -222,7 +222,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.78400004, y: 0.11000001}
   m_AnchorMax: {x: 0.9442101, y: 0.1858257}
-  m_AnchoredPosition: {x: -1.7039948, y: 1.0840149}
+  m_AnchoredPosition: {x: -1.70401, y: 1.0840149}
   m_SizeDelta: {x: 1.6000061, y: 0.40000153}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8987807997670122648
@@ -485,15 +485,15 @@ MonoBehaviour:
   m_FillRect: {fileID: 8987807998429631683}
   m_HandleRect: {fileID: 8987807998270809258}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 20
+  m_MinValue: -20
+  m_MaxValue: 0
   m_WholeNumbers: 1
-  m_Value: -30
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SetVolume
+      - m_Target: {fileID: 8987807998571762000}
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -916,7 +916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fd946e63b6933e4cbd4fae61a6f07e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 549ba144767a9ba45911b9085b340e07, type: 2}
+  audioMixer: {fileID: 24100000, guid: c41564e1d04621e47b697314330b2f06, type: 2}
 --- !u!114 &8230057741806142179
 MonoBehaviour:
   m_ObjectHideFlags: 0
