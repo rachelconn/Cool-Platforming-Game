@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private GameObject settingsUIInstance = null;
     public AudioSource oofSound;
     public GameObject oofFlash;
+    private bool deathInProgress;
 
     public Rigidbody2D body;
     private BoxCollider2D myCollider;
@@ -230,6 +231,7 @@ public class Player : MonoBehaviour
         timeSinceWallJump = float.PositiveInfinity;
         onGround = false;
         canDash = true;
+        deathInProgress = false;
 
         currentLevel = SceneManager.GetActiveScene().name;
         Player.thePlayer = this;
@@ -354,7 +356,11 @@ public class Player : MonoBehaviour
 
     public void _Kill()
     {
-        StartCoroutine(kill());
+        if (!deathInProgress)
+        {
+            deathInProgress = true;
+            StartCoroutine(kill());
+        }
     }
 
     /// <summary>
