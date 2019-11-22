@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2559709067211584263}
   - component: {fileID: 2559709067211584262}
   - component: {fileID: 2559709067211584281}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: ButtonPurple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
