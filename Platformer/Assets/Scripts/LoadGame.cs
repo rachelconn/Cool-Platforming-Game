@@ -33,12 +33,16 @@ public class LoadGame : MonoBehaviour
 
         //Debug.Log("Level = " + tempLevel);
 
+        //Debug.Log("Saving Save.saveFile before new save created = " + Save.saveFile);
+
+        tempSaveFile = Save.saveFile;
+
         Save save = CreateSaveGameObject();
 
+        Save.saveFile = tempSaveFile;
         save.levelNum = tempLevel;
-        //save.saveFile = Save.saveFile;
-        Debug.Log("tempSaveFile = " + tempSaveFile);
-        Debug.Log("Saving Save.saveFile = " + Save.saveFile);
+        //Debug.Log("tempSaveFile = " + tempSaveFile);
+        //Debug.Log("Saving Save.saveFile = " + Save.saveFile);
 
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/gamesave" + Save.saveFile + ".save");
@@ -91,8 +95,8 @@ public class LoadGame : MonoBehaviour
             Save.saveFile = tempSaveFile;
             keys = save.keys;
 
-            Debug.Log("tempSaveFile = " + tempSaveFile);
-            Debug.Log("Save.saveFile = " + Save.saveFile);
+            //Debug.Log("tempSaveFile = " + tempSaveFile);
+            //Debug.Log("Save.saveFile = " + Save.saveFile);
             Debug.Log("Game Loaded");
 
         }
@@ -101,8 +105,8 @@ public class LoadGame : MonoBehaviour
             tempSaveFile = wantSaveFile;
             Save.saveFile = tempSaveFile;
             SceneManager.LoadScene("Level0 (Tutorial)");
-            Debug.Log("tempSaveFile = " + tempSaveFile);
-            Debug.Log("Save.saveFile = " + Save.saveFile);
+            //Debug.Log("tempSaveFile = " + tempSaveFile);
+            //Debug.Log("Save.saveFile = " + Save.saveFile);
             Debug.Log("No game saved");
 
 
