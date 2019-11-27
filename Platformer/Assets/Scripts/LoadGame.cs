@@ -13,14 +13,16 @@ using TMPro;
 public class LoadGame : MonoBehaviour
 {
     string levelNum = "0";
-    string saveFile = "autoSave";
+    string tempSaveFile = "autoSave";
     public Dictionary<string, KeyCode> keys = InputManager.getKeys();
 
     private Save CreateSaveGameObject()
     {
         Save save = new Save();
         save.levelNum = levelNum;
-        save.saveFile = saveFile;
+        //Debug.Log("tempSaveFile = " + tempSaveFile);
+        //Debug.Log("Saving Save.saveFile = " + Save.saveFile);
+        Save.saveFile = tempSaveFile;
 
         return save;
 
@@ -29,15 +31,17 @@ public class LoadGame : MonoBehaviour
     public void SaveGame(string tempLevel)
     {
 
-        Debug.Log("Level = " + tempLevel);
+        //Debug.Log("Level = " + tempLevel);
 
         Save save = CreateSaveGameObject();
 
         save.levelNum = tempLevel;
         //save.saveFile = Save.saveFile;
+        Debug.Log("tempSaveFile = " + tempSaveFile);
+        Debug.Log("Saving Save.saveFile = " + Save.saveFile);
 
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/gamesave" + save.saveFile + ".save");
+        FileStream file = File.Create(Application.persistentDataPath + "/gamesave" + Save.saveFile + ".save");
         bf.Serialize(file, save);
         file.Close();
 
@@ -47,27 +51,29 @@ public class LoadGame : MonoBehaviour
     public void AutosaveGame(string tempLevel)
     {
 
-        Debug.Log("Level = " + tempLevel);
+        //Debug.Log("Level = " + tempLevel);
 
         Save save = CreateSaveGameObject();
 
-        save.saveFile = "autosave";
+        Save.saveFile = "autosave";
         save.levelNum = tempLevel;
 
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/gamesave" + save.saveFile + ".save");
+        FileStream file = File.Create(Application.persistentDataPath + "/gamesave" + Save.saveFile + ".save");
         bf.Serialize(file, save);
         file.Close();
+
+        Save.saveFile = tempSaveFile;
 
         Debug.Log("Game Saved");
     }
 
-    public void Load(string tempSaveFile)
+    public void Load(string wantSaveFile)
     {
-        if (File.Exists(Application.persistentDataPath + "/gamesave" + tempSaveFile + ".save"))
+        if (File.Exists(Application.persistentDataPath + "/gamesave" + wantSaveFile + ".save"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/gamesave" + tempSaveFile + ".save", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/gamesave" + wantSaveFile + ".save", FileMode.Open);
             Save save = (Save)bf.Deserialize(file);
             file.Close();
 
@@ -81,15 +87,22 @@ public class LoadGame : MonoBehaviour
             }
             
             levelNum = save.levelNum;
-            saveFile = save.saveFile;
+            tempSaveFile = wantSaveFile;
+            Save.saveFile = tempSaveFile;
             keys = save.keys;
 
+            Debug.Log("tempSaveFile = " + tempSaveFile);
+            Debug.Log("Save.saveFile = " + Save.saveFile);
             Debug.Log("Game Loaded");
 
         }
         else
         {
+            tempSaveFile = wantSaveFile;
+            Save.saveFile = tempSaveFile;
             SceneManager.LoadScene("Level0 (Tutorial)");
+            Debug.Log("tempSaveFile = " + tempSaveFile);
+            Debug.Log("Save.saveFile = " + Save.saveFile);
             Debug.Log("No game saved");
 
 
