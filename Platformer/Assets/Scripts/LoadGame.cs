@@ -26,9 +26,15 @@ public class LoadGame : MonoBehaviour
 
     }
 
-    public void SaveGame()
+    public void SaveGame(string tempLevel)
     {
+
+        Debug.Log("Level = " + tempLevel);
+
         Save save = CreateSaveGameObject();
+
+        save.levelNum = tempLevel;
+        //save.saveFile = Save.saveFile;
 
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/gamesave" + save.saveFile + ".save");
@@ -38,15 +44,15 @@ public class LoadGame : MonoBehaviour
         Debug.Log("Game Saved");
     }
 
-    public void AutosaveGame()
+    public void AutosaveGame(string tempLevel)
     {
 
-        int tempNum = int.Parse(levelNum);
-        levelNum = (tempNum + 1).ToString();
+        Debug.Log("Level = " + tempLevel);
 
         Save save = CreateSaveGameObject();
 
         save.saveFile = "autosave";
+        save.levelNum = tempLevel;
 
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/gamesave" + save.saveFile + ".save");
@@ -67,11 +73,11 @@ public class LoadGame : MonoBehaviour
 
             if (save.levelNum == "0")
             {
-                SceneManager.LoadScene("Tutorial");
+                SceneManager.LoadScene("Level0 (Tutorial)");
             }
             else
             {
-                SceneManager.LoadScene("Level" + save.levelNum);
+                SceneManager.LoadScene(save.levelNum);
             }
             
             levelNum = save.levelNum;
@@ -83,11 +89,10 @@ public class LoadGame : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Tutorial");
+            SceneManager.LoadScene("Level0 (Tutorial)");
             Debug.Log("No game saved");
 
-            levelNum = "0";
-            saveFile = tempSaveFile;
+
         }
 
 
