@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     private GameObject settingsUIInstance = null;
     public AudioSource oofSound;
     public GameObject oofFlash;
+    //direction the player is facing
+    private Vector2 facingDirection;
     private bool deathInProgress;
 
     public static float volumeLevel;
@@ -191,11 +193,14 @@ public class Player : MonoBehaviour
         // update if player is able to dash
         if (onGround)
             canDash = true;
-        // don't use dash if not holding a direction
-        if (inputDirection.magnitude != 0 && canDash && didDash)
+        // dash direction player is holding, or forward if they araen't holding a direction
+        if (canDash && didDash)
         {
+            if (inputDirection.magnitude == 0 && !onGround)
+                dashDirection = Vector2.right * facingDirection;
+            else
+                dashDirection = inputDirection.normalized;
             canDash = false;
-            dashDirection = inputDirection.normalized;
             timeDashing += Time.fixedDeltaTime;
         }
         // continue dashing
@@ -223,6 +228,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        facingDirection = Vector2.right;
         oofSound = GetComponent<AudioSource>();
         isDead = false;
         body = GetComponent<Rigidbody2D>();
@@ -277,7 +283,11 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // save if player is onground so it doesn't have to be checked multiple times
         onGround = isOnGround();
+        // remember direction player is facing
+        if (inputDirection.x != 0)
+        facingDirection = Vector2.right * inputDirection.x;
         HandleMovement();
         HandleJump();
         HandleWallJump();
