@@ -755,7 +755,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Load2
+          m_StringArgument: File2
           m_BoolArgument: 0
         m_CallState: 1
 --- !u!114 &1521216807
@@ -823,6 +823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34257356a3663794090a0181b6a49c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settingsUI: {fileID: 0}
 --- !u!4 &1602860998
 Transform:
   m_ObjectHideFlags: 0
@@ -1095,7 +1096,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Load1
+          m_StringArgument: File1
           m_BoolArgument: 0
         m_CallState: 1
 --- !u!114 &1862844849

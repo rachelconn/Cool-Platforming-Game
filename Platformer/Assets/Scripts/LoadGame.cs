@@ -33,10 +33,11 @@ public class LoadGame : MonoBehaviour
     public void SaveGame(string tempLevel)
     {
 
-        //Debug.Log("Level = " + tempLevel);
+        Debug.Log("Level = " + tempLevel);
 
-        //Debug.Log("Saving Save.saveFile before new save created = " + Save.saveFile);
+        Debug.Log("Saving Save.saveFile before new save created = " + Save.saveFile);
 
+        levelNum = tempLevel;
         tempSaveFile = Save.saveFile;
         keys = Save.keys;
         Save save = CreateSaveGameObject();
@@ -61,6 +62,8 @@ public class LoadGame : MonoBehaviour
     public void AutosaveGame(string tempLevel)
     {
 
+        levelNum = tempLevel;
+
         //Debug.Log("Level = " + tempLevel);
 
         keys = Save.keys;
@@ -81,6 +84,12 @@ public class LoadGame : MonoBehaviour
         Save.saveFile = tempSaveFile;
 
         Debug.Log("Game Saved");
+    }
+
+    public void SetSave(string SaveName)
+    {
+        Save.saveFile = SaveName;
+        SaveGame(levelNum);
     }
 
     //Loads the desired saved game
