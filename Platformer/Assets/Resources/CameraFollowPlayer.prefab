@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 6923054163726979912}
   - component: {fileID: 905559095765142891}
   - component: {fileID: 5085807276335330147}
-  m_Layer: 0
+  - component: {fileID: 2332629805147145245}
+  m_Layer: 12
   m_Name: CameraFollowPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,3 +161,20 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &2332629805147145245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2317262143793066713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: c29e80e3fe54ef44da3cec372994e983, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
