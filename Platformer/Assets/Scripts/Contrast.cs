@@ -14,7 +14,7 @@ public class Contrast : MonoBehaviour
     public Slider contrastSlider;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         ppp.TryGetSettings(out color);
         contrastSlider.value = contrastValue;
