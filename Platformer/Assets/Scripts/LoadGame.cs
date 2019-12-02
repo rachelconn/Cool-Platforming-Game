@@ -12,7 +12,7 @@ using TMPro;
 
 public class LoadGame : MonoBehaviour
 {
-    string levelNum = "0";
+    public static string levelNum = "0";
     string tempSaveFile = "autoSave";
     public Dictionary<string, KeyCode> keys = InputManager.getKeys();
 
@@ -84,6 +84,11 @@ public class LoadGame : MonoBehaviour
         Save.saveFile = tempSaveFile;
 
         Debug.Log("Game Saved");
+    }
+
+    public static void setLevel(string newLevel)
+    {
+        levelNum = newLevel;
     }
 
     public void SetSave(string SaveName)
