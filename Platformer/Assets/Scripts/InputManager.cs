@@ -7,6 +7,7 @@ public static class InputManager
 {
     public static bool Pref_ShowSkipDialogue = true;
 
+    // Store the KeyCode for each keybind button
     private static Dictionary<string, KeyCode> keys = new Dictionary<string, KeyCode>()
     {
         {"Jump", KeyCode.Z },
@@ -30,11 +31,13 @@ public static class InputManager
         return Input.GetKeyDown(keys[name]);
     }
 
+    // Return the whole keys dictionary
     public static Dictionary<string, KeyCode> getKeys()
     {
         return keys;
     }
 
+    // Return the KeyCode of the name placed into the parameter
     public static bool GetButton(string name)
     {
         if (!keys.ContainsKey(name))
@@ -45,6 +48,7 @@ public static class InputManager
         return Input.GetKey(keys[name]);
     }
 
+    // Get the direction of the player's movement input
     public static float GetAxisRaw(string axis)
     {
         if (axis == "Horizontal")
