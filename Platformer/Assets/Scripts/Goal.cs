@@ -10,6 +10,7 @@ public class Goal : MonoBehaviour
     private bool levelCompleted;
     public GameObject levelCompletePrefab;
     public string nextLevelScene;
+    private LoadGame Load = new LoadGame();
 
     private void FinishLevel() {
         stopwatch.Stop();
@@ -21,6 +22,9 @@ public class Goal : MonoBehaviour
         GameObject levelCompleteScreen = Instantiate(levelCompletePrefab, Vector3.zero, Quaternion.identity);
         levelCompleteScreen.GetComponent<LevelCompleteControls>().timeToComplete = ts;
         levelCompleteScreen.GetComponent<LevelCompleteControls>().nextLevelScene = nextLevelScene;
+        //save game
+        Load.SaveGame(nextLevelScene);
+        Load.AutosaveGame(nextLevelScene);
     }
 
     void Start()

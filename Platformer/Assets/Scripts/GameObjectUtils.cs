@@ -18,6 +18,7 @@ public class GameObjectUtils : MonoBehaviour
         Time.timeScale = 1;
         string nextLevelScene = GameObject.Find("Goal").GetComponent<Goal>().nextLevelScene;
         SceneManager.LoadScene(nextLevelScene, LoadSceneMode.Single);
+        LoadGame.setLevel(nextLevelScene);
     }
 
 

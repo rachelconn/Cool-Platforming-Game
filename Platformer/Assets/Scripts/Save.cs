@@ -10,8 +10,8 @@ public class Save
 {
 
     public string levelNum = "0";
-    public string saveFile = "autosave";
+    public static string saveFile = "autosave";
 
-    public Dictionary<string, KeyCode> keys = InputManager.getKeys();
+    public static Dictionary<string, KeyCode> keys = InputManager.getKeys();
 
 }
