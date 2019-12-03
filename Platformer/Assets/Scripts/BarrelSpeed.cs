@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class BarrelSpeed
 {
-    // Use this script to change barrel speed
+    // Use this value to change barrel speed
     public static int speed = 6;
 
 }

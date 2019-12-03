@@ -15,17 +15,21 @@ public class ChangeDifficulty : MonoBehaviour
     void Start()
     {
         myDropDown = this.GetComponent<Dropdown>();
+
+        // If the dropdown menu is found call the ChangeDiff() function
         if (myDropDown != null)
         {
             myDropDown.onValueChanged.AddListener(delegate { ChangeDiff(); });
         }
         else
         {
-            Debug.LogError("myDropDown not fixed yet reee");
+            Debug.LogError("myDropDown not fixed yet");
             ChangeDifficulty.HEURISTIC_BROKEN = true;
             return;
         }
 
+        // Change the value of the dropdown so it shows the right difficulty the next 
+        // time the settings menu is open.
         if (BarrelSpeed.speed == 4)
         {
             // Easy Mode
@@ -49,6 +53,7 @@ public class ChangeDifficulty : MonoBehaviour
         
     }
 
+    // Change the barrel speeds based off of the difficulty chosen
     void ChangeDiff()
     {
         if (ChangeDifficulty.HEURISTIC_BROKEN)
