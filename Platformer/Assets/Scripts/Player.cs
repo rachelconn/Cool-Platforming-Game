@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     private bool didDash;
     // player can dash again on landing
     private bool canDash;
+    // used to only allow wavedash if player started airborne
+    private bool wasGroundedWhenDashing;
     public bool getCanDash()
     {
         return canDash;
@@ -130,7 +132,7 @@ public class Player : MonoBehaviour
             body.velocity = new Vector2(body.velocity.x, getJumpVelocity());
 
             // if recently dashed, wavedash
-            if (timeSinceDash < 0.05f) {
+            if (!wasGroundedWhenDashing && timeSinceDash < 0.05f) {
                 Debug.Log("Wavedashed!");
                 body.velocity = new Vector2(facingDirection.x * dashSpeed * 1.5f * Time.fixedDeltaTime, body.velocity.y);
             }
@@ -220,6 +222,8 @@ public class Player : MonoBehaviour
         // dash direction player is holding, or forward if they araen't holding a direction
         if (canDash && didDash)
         {
+            // only let player wavedash if not grounded at beginning of dash
+            wasGroundedWhenDashing = onGround;
             if (inputDirection.magnitude == 0 && !onGround)
                 dashDirection = Vector2.right * facingDirection;
             else
