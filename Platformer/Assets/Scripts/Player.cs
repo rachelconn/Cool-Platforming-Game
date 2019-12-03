@@ -46,10 +46,14 @@ public class Player : MonoBehaviour
     private float timeDashing;
     // timeSinceDash used to let player wavedash if they've recently dashed
     private float timeSinceDash;
-    //direction wall jumped (0 if reached neutral since then), used to reduce influence on speed
+    // direction wall jumped (0 if reached neutral since then), used to reduce influence on speed
     private float wallJumpDirection;
-    // horizontal + vertical axis
+    // time since touched wall, used to give leniency to walljumps
+    private float timeSinceWallTouch;
+    // used for walljump leniency, remember direction of last wall hit (-1 or 1 => left or right)
+    private float lastCollisionDirection;
     private float timeSinceWallJump;
+    // horizontal + vertical axis
     private Vector2 inputDirection;
     // direction pressed when the player dashed
     private Vector2 dashDirection;
@@ -173,6 +177,7 @@ public class Player : MonoBehaviour
 
     private void HandleWallJump()
     {
+        timeSinceWallTouch += Time.fixedDeltaTime;
         if (onGround)
             wallJumpDirection = 0;
         // see if touching a wall on either side and determine action to take
@@ -184,20 +189,11 @@ public class Player : MonoBehaviour
                 Vector2 pos = transform.position + (Vector3.up * distToSide * i);
                 if (Physics2D.Raycast(pos, Vector2.right * direction, distToSide + 0.2f, LayerMask.GetMask("Wall")))
                 {
-                    // wall jumping
-                    if (!onGround && didJump)
-                    {
-                        //vertical movement
-                        body.velocity = Vector2.up * getJumpVelocity();
-                        wallJumpDirection = -direction;
-                        //bounce from wall
-                        body.velocity += Vector2.right * getWallJumpVelocity();
-                        //stop dash after walljumping
-                        timeDashing = 0;
-                        timeSinceWallJump = 0;
-                    }
-                    // else slide down if holding towards wall
-                    else if (!onGround && direction == inputDirection.x)
+                    // remember that player hit a wall (and the direction of it) to wall jump later
+                    timeSinceWallTouch = 0;
+                    lastCollisionDirection = direction;
+                    // slide down if holding towards wall
+                    if (!onGround && direction == inputDirection.x)
                     {
                         float maxFallSpeed = maxWallSlideSpeed * Time.fixedDeltaTime;
                         body.velocity = new Vector2(body.velocity.x, Mathf.Clamp(body.velocity.y, -maxFallSpeed, float.PositiveInfinity));
@@ -206,6 +202,18 @@ public class Player : MonoBehaviour
                     break;
                 }
             }
+        }
+        // wall jumping
+        if (!onGround && didJump && timeSinceWallTouch < 0.05f)
+        {
+            //vertical movement
+            body.velocity = Vector2.up * getJumpVelocity();
+            wallJumpDirection = -lastCollisionDirection;
+            //bounce from wall
+            body.velocity += Vector2.right * getWallJumpVelocity();
+            //stop dash after walljumping
+            timeDashing = 0;
+            timeSinceWallJump = 0;
         }
         timeSinceWallJump += Time.fixedDeltaTime;
     }
@@ -268,6 +276,7 @@ public class Player : MonoBehaviour
         distToGround = myCollider.bounds.extents.y;
         timeSinceDash = float.PositiveInfinity;
         timeSinceWallJump = float.PositiveInfinity;
+        timeSinceWallTouch = float.PositiveInfinity;
         onGround = false;
         canDash = true;
         deathInProgress = false;
