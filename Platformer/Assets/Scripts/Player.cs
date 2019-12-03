@@ -447,6 +447,7 @@ public class Player : MonoBehaviour
 
         // stop dashing if player jumped
         timeDashing = 0;
+        usedCannon = false;
         RechargeDash();
     }
 }
