@@ -28,7 +28,7 @@ public class SideSpring : MonoBehaviour {
     }
 
     
-    void OnCollisionEnter2D(Collision2D other) {
+    void OnCollisionStay2D(Collision2D other) {
 
         if (other.gameObject.name == "Player")
             if (direction == 1) {

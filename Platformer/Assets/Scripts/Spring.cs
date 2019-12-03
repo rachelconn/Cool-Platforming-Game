@@ -20,7 +20,7 @@ public class Spring : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision2D other) {
+    void OnCollisionStay2D(Collision2D other) {
 
         if (other.gameObject.name == "Player" && other.GetContact(0).normal[1] < 0)
         {
@@ -28,4 +28,3 @@ public class Spring : MonoBehaviour
         }
     }
 }
-
