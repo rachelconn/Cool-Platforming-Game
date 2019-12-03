@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     //direction the player is facing
     private Vector2 facingDirection;
     private bool deathInProgress;
+    // if player uses cannon, stop lerping horizontal speed
+    private bool usedCannon = false;
 
     public static float volumeLevel;
 
@@ -40,6 +42,8 @@ public class Player : MonoBehaviour
     private float distToGround;
     // time since pressing dash
     private float timeDashing;
+    // timeSinceDash used to let player wavedash if they've recently dashed
+    private float timeSinceDash;
     //direction wall jumped (0 if reached neutral since then), used to reduce influence on speed
     private float wallJumpDirection;
     // horizontal + vertical axis
@@ -78,14 +82,18 @@ public class Player : MonoBehaviour
         // cap vertical speed to terminal velocity
 
         float newVelocityY = Mathf.Max(body.velocity.y, Time.fixedDeltaTime * terminalVelocity);
-        // smooth movement
-        if (System.Math.Abs(body.velocity.x) < Time.fixedDeltaTime * dashSpeed)
-            body.velocity = new Vector2(Mathf.Lerp(body.velocity.x, targetVelocityX, 0.3f), newVelocityY);
-
-        else
-        {
-            body.velocity -= new Vector2(body.velocity.x * 0.05f, body.velocity.y * 0.05f);
+        // smooth movement: lerp speed to target velocity, keep more momentum if above moveSpeed
+        if (!usedCannon && System.Math.Abs(body.velocity.x) > moveSpeed * Time.fixedDeltaTime) {
+            body.velocity = new Vector2(Mathf.Lerp(body.velocity.x, targetVelocityX, 0.03f), newVelocityY);
         }
+        // using cannon changes momentum behavior
+        else if (usedCannon)
+            if (inputDirection.x == 0)
+                body.velocity = new Vector2(Mathf.Lerp(body.velocity.x, targetVelocityX, 0.05f), newVelocityY);
+            else
+                body.velocity = new Vector2(Mathf.Lerp(body.velocity.x, targetVelocityX, 0.15f), newVelocityY);
+        else
+            body.velocity = new Vector2(Mathf.Lerp(body.velocity.x, targetVelocityX, 0.3f), newVelocityY);
         // lerp hspeed to wall jump direction if recently wall jumped so player can't climb infinitely
         if (wallJumpDirection != 0)
         {
@@ -117,7 +125,15 @@ public class Player : MonoBehaviour
         if (onGround && didJump)
         {
             didJump = false;
+
+            // make player jump (set y velocity)
             body.velocity = new Vector2(body.velocity.x, getJumpVelocity());
+
+            // if recently dashed, wavedash
+            if (timeSinceDash < 0.05f) {
+                Debug.Log("Wavedashed!");
+                body.velocity = new Vector2(facingDirection.x * dashSpeed * 1.5f * Time.fixedDeltaTime, body.velocity.y);
+            }
 
             // stop dashing if player jumped
             timeDashing = 0;
@@ -141,8 +157,14 @@ public class Player : MonoBehaviour
         for (int i = -1; i <= 1; i++)
         {
             Vector2 pos = transform.position + (Vector3.right * distToSide * i);
-            if (Physics2D.Raycast(pos, -Vector2.up, distToGround + 0.1f, LayerMask.GetMask("Wall")))
+            if (Physics2D.Raycast(pos, -Vector2.up, distToGround + 0.1f, LayerMask.GetMask("Wall"))) {
+                // reset usedCannon and horizontal speed when landing
+                if (usedCannon) {
+                    usedCannon = false;
+                    body.velocity *= Vector2.up;
+                }
                 return true;
+            }
         }
         return false;
     }
@@ -190,6 +212,8 @@ public class Player : MonoBehaviour
     {
         // reset gravity in case dash stops externally
         body.gravityScale = 1;
+        // update time since dash - will be reset if player dashes again
+        timeSinceDash += Time.fixedDeltaTime;
         // update if player is able to dash
         if (onGround)
             canDash = true;
@@ -209,13 +233,15 @@ public class Player : MonoBehaviour
             body.gravityScale = 0;
             body.velocity = dashSpeed * dashDirection * Time.fixedDeltaTime;
             timeDashing += Time.fixedDeltaTime;
+            timeSinceDash = 0;
         }
         // finish if dash is over
         if (timeDashing > dashTime)
         {
             timeDashing = 0;
-            // remove some vertical velocity
-            body.velocity = new Vector2(body.velocity.x, Mathf.Min(body.velocity.y, dashSpeed / 2 * Time.fixedDeltaTime));
+            // remove some vertical velocity, reset horizontal velocity
+            body.velocity = new Vector2(Mathf.Sign(body.velocity.x) * Mathf.Min(Mathf.Abs(body.velocity.x), moveSpeed * Time.fixedDeltaTime),
+                                        Mathf.Min(body.velocity.y, dashSpeed / 2 * Time.fixedDeltaTime));
         }
         didDash = false;
     }
@@ -236,6 +262,7 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         distToSide = myCollider.bounds.extents.x;
         distToGround = myCollider.bounds.extents.y;
+        timeSinceDash = float.PositiveInfinity;
         timeSinceWallJump = float.PositiveInfinity;
         onGround = false;
         canDash = true;
@@ -332,7 +359,6 @@ public class Player : MonoBehaviour
     public IEnumerator kill()
     {
         isDead = true;
-        Debug.Log("You have died.");
         oofSound.Play();
         StartCoroutine(KillScreenFlash());
         yield return new WaitForSeconds(0.7f);
@@ -358,7 +384,6 @@ public class Player : MonoBehaviour
             Color temp = im.color;
             temp.a = i;
             im.color = temp;
-            Debug.Log(string.Format("alpha set to {0}", i));
             yield return new WaitForSeconds(0.5f / 15.0f);
         }
         Color temp2 = im.color;
@@ -397,8 +422,12 @@ public class Player : MonoBehaviour
     /// </summary>
     public static void RechargeDash()
     {
-        Debug.Log("Your dash has been recharged.");
         Player.thePlayer._rechargeDash();
+    }
+
+    public static void SetUsedCannon()
+    {
+        Player.thePlayer.usedCannon = true;
     }
 
     public void SpringJump(int direction)
@@ -406,13 +435,13 @@ public class Player : MonoBehaviour
         switch (direction)
         {
             case 0:
-                body.velocity += Vector2.left * 2 * getJumpVelocity();
+                body.velocity = new Vector2(-2 * getJumpVelocity(), body.velocity.y);
                 break;
             case 1:
-                body.velocity += Vector2.right * 2 * getJumpVelocity();
+                body.velocity = new Vector2(2 * getJumpVelocity(), body.velocity.y);
                 break;
             case 2:
-                body.velocity += Vector2.up * 2 * getJumpVelocity();
+                body.velocity = new Vector2(body.velocity.x, 2 * getJumpVelocity());
                 break;
         }
 
