@@ -13,7 +13,6 @@ public class Cannon : MonoBehaviour
     private double cannonCoolDown = 0;
     private SpriteRenderer sr;
 
-    private bool launch = false;
 
     //constant to change speed that the barrel spins (1 = 8 second full spin; 8 = 1 second full spin)
     public int barrelSpeed;
@@ -90,35 +89,16 @@ public class Cannon : MonoBehaviour
             {
                 Player.thePlayer.didJump = false;
                 Player.RechargeDash();
-
-                switch (System.Math.Floor(time))
-                {
-                    case 0:
-                        theBody.velocity += (new Vector2(0, 1)) * 2.25f * Player.thePlayer.getJumpVelocity();
-                        break;
-                    case 1:
-                        theBody.velocity += (new Vector2(1, 1)) * 2.5f * Player.thePlayer.getJumpVelocity();
-                        break;
-                    case 2:
-                        theBody.velocity += (new Vector2(1, 0)) * 2.5f * Player.thePlayer.getJumpVelocity();
-                        break;
-                    case 3:
-                        theBody.velocity += (new Vector2(1, -1)) * 2.5f * Player.thePlayer.getJumpVelocity();
-                        break;
-                    case 4:
-                        theBody.velocity += (new Vector2(0, -1)) * 2.5f * Player.thePlayer.getJumpVelocity();
-                        break;
-                    case 5:
-                        theBody.velocity += (new Vector2(-1, -1)) * 2.5f * Player.thePlayer.getJumpVelocity();
-                        break;
-                    case 6:
-                        theBody.velocity += (new Vector2(-1, 0)) * 2.5f * Player.thePlayer.getJumpVelocity();
-                        break;
-                    case 7:
-                        theBody.velocity += (new Vector2(-1, 1)) * 2.5f * Player.thePlayer.getJumpVelocity();
-                        break;
-                }
-
+                float t = (float) System.Math.Floor(time);
+                if (t != 0)
+                    Player.SetUsedCannon();
+                // calculate angle from time and set velocity
+                float angle = Mathf.Deg2Rad * (t * -(360 / 8) + 90);
+                // launch with less force if launching vertically
+                float multiplier = (Mathf.Abs((angle - (Mathf.PI / 2)) % (Mathf.PI * 2)) < 0.01f) ? 2.0f : 2.5f;
+                theBody.velocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+                // don't actually normalize movement because that's how it worked before I changed this
+                theBody.velocity *= multiplier * Player.thePlayer.getJumpVelocity();
                 theBody.gravityScale = 1;
                 inCannon = false;
 
