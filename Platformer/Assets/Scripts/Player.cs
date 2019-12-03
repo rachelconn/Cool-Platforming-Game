@@ -138,7 +138,7 @@ public class Player : MonoBehaviour
             // if recently dashed, wavedash
             if (!wasGroundedWhenDashing && timeSinceDash < 0.05f) {
                 Debug.Log("Wavedashed!");
-                body.velocity = new Vector2(facingDirection.x * dashSpeed * 1.5f * Time.fixedDeltaTime, body.velocity.y);
+                body.velocity = new Vector2(facingDirection.x * dashSpeed * 1.7f * Time.fixedDeltaTime, body.velocity.y);
             }
 
             // stop dashing if player jumped
