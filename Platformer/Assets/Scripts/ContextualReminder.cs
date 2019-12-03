@@ -6,6 +6,10 @@ using TMPro;
 [RequireComponent(typeof(AudioSource))]
 public class ContextualReminder : MonoBehaviour
 {
+    // list of audiosources to shut up
+    public static LinkedList<AudioSource> lst_as = new LinkedList<AudioSource>();
+    private LinkedListNode<AudioSource> myAudioSource;
+
     public string MessageToShow;
     public GameObject MessageBox;
     public AudioClip narration;
@@ -28,6 +32,8 @@ public class ContextualReminder : MonoBehaviour
         {
             sPlayer.clip = narration;
         }
+        myAudioSource = new LinkedListNode<AudioSource>(sPlayer);
+        lst_as.AddLast(myAudioSource);
     }
 
     public void SetMessage(string message)
@@ -66,8 +72,17 @@ public class ContextualReminder : MonoBehaviour
 
             if (curCooldownTime <= 0 && playable)
             {
+                foreach (AudioSource lln in lst_as)
+                {
+                    lln.Stop();
+                }
                 sPlayer.Play();
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        lst_as.Remove(myAudioSource);
     }
 }
