@@ -352,6 +352,11 @@ PrefabInstance:
       propertyPath: MessageToShow
       value: One last tip before you tackle our game
       objectReference: {fileID: 0}
+    - target: {fileID: 8481342381072742902, guid: a96a514d196ee714da9b50ac5965eb4a,
+        type: 3}
+      propertyPath: narration
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d96aeecc4ed8fc4eb0aa79d24c89f39, type: 3}
     - target: {fileID: 4198967756934984160, guid: a96a514d196ee714da9b50ac5965eb4a,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -446,6 +451,11 @@ PrefabInstance:
       propertyPath: MessageToShow
       value: Try wall jumping back and forth to climb
       objectReference: {fileID: 0}
+    - target: {fileID: 8481342381072742902, guid: a96a514d196ee714da9b50ac5965eb4a,
+        type: 3}
+      propertyPath: narration
+      value: 
+      objectReference: {fileID: 8300000, guid: fd30d634867585e4e9b64d39a77dd15f, type: 3}
     - target: {fileID: 4198967756934984160, guid: a96a514d196ee714da9b50ac5965eb4a,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -540,6 +550,11 @@ PrefabInstance:
       propertyPath: MessageToShow
       value: Next up is the wall jump
       objectReference: {fileID: 0}
+    - target: {fileID: 8481342381072742902, guid: a96a514d196ee714da9b50ac5965eb4a,
+        type: 3}
+      propertyPath: narration
+      value: 
+      objectReference: {fileID: 8300000, guid: 669e10033c78ecd488e874f52808ae7f, type: 3}
     - target: {fileID: 4198967756934984160, guid: a96a514d196ee714da9b50ac5965eb4a,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -634,6 +649,11 @@ PrefabInstance:
       propertyPath: MessageToShow
       value: Hold towards a wall and jump to wall jump.
       objectReference: {fileID: 0}
+    - target: {fileID: 8481342381072742902, guid: a96a514d196ee714da9b50ac5965eb4a,
+        type: 3}
+      propertyPath: narration
+      value: 
+      objectReference: {fileID: 8300000, guid: 055d1fa3182529742b1b0e656470b7d2, type: 3}
     - target: {fileID: 4198967756934984160, guid: a96a514d196ee714da9b50ac5965eb4a,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -802,6 +822,11 @@ PrefabInstance:
       propertyPath: MessageToShow
       value: Good!
       objectReference: {fileID: 0}
+    - target: {fileID: 8481342381072742902, guid: a96a514d196ee714da9b50ac5965eb4a,
+        type: 3}
+      propertyPath: narration
+      value: 
+      objectReference: {fileID: 8300000, guid: bd3e01a5d8e65da40ad460cba6421030, type: 3}
     - target: {fileID: 4198967756934984160, guid: a96a514d196ee714da9b50ac5965eb4a,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -896,6 +921,11 @@ PrefabInstance:
       propertyPath: MessageToShow
       value: Good luck Partner
       objectReference: {fileID: 0}
+    - target: {fileID: 8481342381072742902, guid: a96a514d196ee714da9b50ac5965eb4a,
+        type: 3}
+      propertyPath: narration
+      value: 
+      objectReference: {fileID: 8300000, guid: 373772dd9a8247b4189e48eeb5783bbd, type: 3}
     - target: {fileID: 4198967756934984160, guid: a96a514d196ee714da9b50ac5965eb4a,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1149,6 +1179,11 @@ PrefabInstance:
       propertyPath: MessageToShow
       value: You can also slide down a wall by touching one and moving into it.
       objectReference: {fileID: 0}
+    - target: {fileID: 8481342381072742902, guid: a96a514d196ee714da9b50ac5965eb4a,
+        type: 3}
+      propertyPath: narration
+      value: 
+      objectReference: {fileID: 8300000, guid: a629572795550164aa4ecbde3f8c7780, type: 3}
     - target: {fileID: 4198967756934984160, guid: a96a514d196ee714da9b50ac5965eb4a,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1323,6 +1358,11 @@ PrefabInstance:
       propertyPath: MessageToShow
       value: Ok try to get over this gap, be careful
       objectReference: {fileID: 0}
+    - target: {fileID: 8481342381072742902, guid: a96a514d196ee714da9b50ac5965eb4a,
+        type: 3}
+      propertyPath: narration
+      value: 
+      objectReference: {fileID: 8300000, guid: 20f09e65c491ff045a57fcd0a08b70f6, type: 3}
     - target: {fileID: 4198967756934984160, guid: a96a514d196ee714da9b50ac5965eb4a,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1491,6 +1531,11 @@ PrefabInstance:
       propertyPath: MessageToShow
       value: Now it's time to dash.
       objectReference: {fileID: 0}
+    - target: {fileID: 8481342381072742902, guid: a96a514d196ee714da9b50ac5965eb4a,
+        type: 3}
+      propertyPath: narration
+      value: 
+      objectReference: {fileID: 8300000, guid: 29b438673ddc77f45b4539f47eae90aa, type: 3}
     - target: {fileID: 4198967756934984160, guid: a96a514d196ee714da9b50ac5965eb4a,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1651,6 +1696,11 @@ PrefabInstance:
       propertyPath: MessageToShow
       value: test text
       objectReference: {fileID: 0}
+    - target: {fileID: 8481342381072742902, guid: a96a514d196ee714da9b50ac5965eb4a,
+        type: 3}
+      propertyPath: narration
+      value: 
+      objectReference: {fileID: 8300000, guid: 8be0f0be777d6734b97bf5226588a286, type: 3}
     - target: {fileID: 4198967756934984160, guid: a96a514d196ee714da9b50ac5965eb4a,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1745,6 +1795,11 @@ PrefabInstance:
       propertyPath: MessageToShow
       value: Go ahead and try jumping over that obstacle
       objectReference: {fileID: 0}
+    - target: {fileID: 8481342381072742902, guid: a96a514d196ee714da9b50ac5965eb4a,
+        type: 3}
+      propertyPath: narration
+      value: 
+      objectReference: {fileID: 8300000, guid: 207c39273bc5f6f4cbff0244a22920d1, type: 3}
     - target: {fileID: 4198967756934984160, guid: a96a514d196ee714da9b50ac5965eb4a,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1913,6 +1968,11 @@ PrefabInstance:
       propertyPath: MessageToShow
       value: In this game you will be jumping and dashing
       objectReference: {fileID: 0}
+    - target: {fileID: 8481342381072742902, guid: a96a514d196ee714da9b50ac5965eb4a,
+        type: 3}
+      propertyPath: narration
+      value: 
+      objectReference: {fileID: 8300000, guid: edafdabd86625c640863972ebe353267, type: 3}
     - target: {fileID: 4198967756934984160, guid: a96a514d196ee714da9b50ac5965eb4a,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -2086,6 +2146,11 @@ PrefabInstance:
       propertyPath: MessageToShow
       value: If you can get to the flag, you are ready.
       objectReference: {fileID: 0}
+    - target: {fileID: 8481342381072742902, guid: a96a514d196ee714da9b50ac5965eb4a,
+        type: 3}
+      propertyPath: narration
+      value: 
+      objectReference: {fileID: 8300000, guid: 6af08c7ad42cf8f40acd4e336fb8ca7c, type: 3}
     - target: {fileID: 4198967756934984160, guid: a96a514d196ee714da9b50ac5965eb4a,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -2249,6 +2314,11 @@ PrefabInstance:
       propertyPath: MessageToShow
       value: This gap is too far to just jump
       objectReference: {fileID: 0}
+    - target: {fileID: 8481342381072742902, guid: a96a514d196ee714da9b50ac5965eb4a,
+        type: 3}
+      propertyPath: narration
+      value: 
+      objectReference: {fileID: 8300000, guid: 50763f3fcfc5a3c4e8fa26ba26bb9116, type: 3}
     - target: {fileID: 4198967756934984160, guid: a96a514d196ee714da9b50ac5965eb4a,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -2343,6 +2413,11 @@ PrefabInstance:
       propertyPath: MessageToShow
       value: You can dash upwards, and will need to throughout the game
       objectReference: {fileID: 0}
+    - target: {fileID: 8481342381072742902, guid: a96a514d196ee714da9b50ac5965eb4a,
+        type: 3}
+      propertyPath: narration
+      value: 
+      objectReference: {fileID: 8300000, guid: 0dcd1e314e66742439a8377326ff836f, type: 3}
     - target: {fileID: 4198967756934984160, guid: a96a514d196ee714da9b50ac5965eb4a,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -2437,6 +2512,11 @@ PrefabInstance:
       propertyPath: MessageToShow
       value: Welcome to our Cool Platforming Game thats Really Good
       objectReference: {fileID: 0}
+    - target: {fileID: 8481342381072742902, guid: a96a514d196ee714da9b50ac5965eb4a,
+        type: 3}
+      propertyPath: narration
+      value: 
+      objectReference: {fileID: 8300000, guid: 1bf9a9e729f66f74299e9a54e47b888b, type: 3}
     - target: {fileID: 4198967756934984160, guid: a96a514d196ee714da9b50ac5965eb4a,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -2577,6 +2657,11 @@ PrefabInstance:
       propertyPath: MessageToShow
       value: You can dash any direction when you're in the air
       objectReference: {fileID: 0}
+    - target: {fileID: 8481342381072742902, guid: a96a514d196ee714da9b50ac5965eb4a,
+        type: 3}
+      propertyPath: narration
+      value: 
+      objectReference: {fileID: 8300000, guid: f19c20538b455504682390cf21f327df, type: 3}
     - target: {fileID: 4198967756934984160, guid: a96a514d196ee714da9b50ac5965eb4a,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -2836,6 +2921,11 @@ PrefabInstance:
       propertyPath: MessageToShow
       value: Try Dashing when in the air
       objectReference: {fileID: 0}
+    - target: {fileID: 8481342381072742902, guid: a96a514d196ee714da9b50ac5965eb4a,
+        type: 3}
+      propertyPath: narration
+      value: 
+      objectReference: {fileID: 8300000, guid: 8e304502efe4f7f4c8f978829769a088, type: 3}
     - target: {fileID: 4198967756934984160, guid: a96a514d196ee714da9b50ac5965eb4a,
         type: 3}
       propertyPath: m_textInfo.characterCount
