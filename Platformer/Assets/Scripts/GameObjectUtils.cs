@@ -44,4 +44,9 @@ public class GameObjectUtils : MonoBehaviour
         mixer.SetFloat("volume", volumeSlider.value);
         // Debug.Log(string.Format("volume set to {0}!", Player.volumeLevel));
     }
+
+    public void setReadTutorial()
+    {
+        Player.readTutorial = gameObject.GetComponent<Toggle>().isOn;
+    }
 }

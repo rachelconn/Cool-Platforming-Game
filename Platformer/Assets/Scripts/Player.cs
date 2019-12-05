@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private bool deathInProgress;
 
     public static float volumeLevel;
+    public static bool readTutorial;
 
     public Rigidbody2D body;
     private BoxCollider2D myCollider;
